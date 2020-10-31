@@ -1,0 +1,90 @@
+.navbar-brand img {
+  max-height: 80px;
+}
+
+.navbar-header-custom {
+  padding: 8px 0;
+}
+
+.active-filter {
+  color: #86e570;
+}
+
+.pagination span {
+  float: left;
+  padding: 0 18px;
+  line-height: 40px;
+  text-decoration: none;
+  border: 1px solid #dbdbdb !important;
+  border-left-width: 0;
+  background: #fff;
+}
+
+.pagination a {
+  color: #86e570;
+  border: 1px solid #dbdbdb !important;
+}
+
+.pagination a:hover {
+  background-color: #232323;
+  color: #fff;
+}
+
+.pagination .active span {
+  background-color: #f7f7f7 !important;
+  color: #999 !important;
+  cursor: default !important;
+  border: 1px solid #dbdbdb !important;
+}
+
+.page-link {
+  border-radius: 0 !important;
+}
+
+.send-btn {
+  background: #232323;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 12px 30px;
+  line-height: normal;
+  font-weight: 500;
+  text-transform: none !important;
+  position: relative;
+  z-index: 9999;
+  display: inline-block;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #86e570;
+}
+
+.error-border {
+  border: 1px solid #86e570 !important;
+}
+
+.error-color {
+  color: #86e570;
+  font-weight: 700;
+}
+
+.error-message,
+.success-message {
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #86e570;
+}
+
+.success-message {
+  color: #86e570;
+}
+

@@ -1,0 +1,49 @@
+{
+    "_Navbar": "",
+    "Home": "Domov",
+    "Contact": "Kontakt",
+    "Events": "Udalosti",
+
+    "_Home": "",
+    "Welcome": "Vitajte",
+    "This is the events calendar": "Toto je kalendár udalostí",
+    "You will find current info on the upcoming events here ": "Nájdete tu najaktuálnejšie údaje o nadchádzajúcich udalostiach",
+    "Upcoming events": "Nadchádzajúce udalosti",
+    "View": "Zobraziť",
+
+    "_Contact": "",
+    "If you have any questions just contact us": "V prípade otázok nás neváhajte kontaktovať",
+    "Call us": "Zavolajte nám",
+    "Residence": "Naše sídlo",
+    "Text us": "Napíšte nám",
+    "Communication": "Komunikácia",
+    "We try to respond as soon as possible": "Snažíme sa reagovať čo najskôr",
+    "Your name": "Vaše meno",
+    "Your last name": "Vaše priezvisko",
+    "Your phone": "Vaše telefónne číslo",
+    "Your email": "Váš e-mail",
+    "Leave us a message": "Nechajte nám správu...",
+    "Send": "Odoslať",
+    "Email us": "Napíšte nám email",
+
+    "_Footer": "",
+    "Quick links": "Rýchle odkazy",
+    "Contact information": "Kontaktné údaje",
+    "Team project": "Tímový projekt",
+    "All rights reserved": "Všetky práva vyhradené",
+    "Created by Team 2": "Vytvoril Tím 2",
+
+    "_Events": "",
+    "Categories": "Kategórie",
+    "All categories": "Všetky kategórie",
+
+    "_Auth": "",
+    "Login": "Prihlásiť sa",
+    "Logout": "Odhlásiť sa",
+    "Password": "Heslo",
+    "Forgotten password": "Zabudli ste heslo?",
+
+    "_Mail": "",
+    "Your message could not be send": "Vaša správa nebola odoslaná, skúste to prosím neskôr.",
+    "Your message was sent successfully": "Vaša správa bola úspešne odoslaná!"
+}

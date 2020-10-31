@@ -1,0 +1,14 @@
+{
+    "/assets/style.css": "/assets/style.css",
+    "/assets/admin.css": "/assets/admin.css",
+    "/css/style.min.css": "/css/style.min.css",
+    "/css/login.min.css": "/css/login.min.css",
+    "/css/admin.min.css": "/css/admin.min.css",
+    "/js/frontend.min.js": "/js/frontend.min.js",
+    "/js/login.min.js": "/js/login.min.js",
+    "/js/admin.min.js": "/js/admin.min.js",
+    "/node_modules/tinymce/jquery.tinymce.js": "/node_modules/tinymce/jquery.tinymce.js",
+    "/node_modules/tinymce/jquery.tinymce.min.js": "/node_modules/tinymce/jquery.tinymce.min.js",
+    "/node_modules/tinymce/tinymce.js": "/node_modules/tinymce/tinymce.js",
+    "/node_modules/tinymce/tinymce.min.js": "/node_modules/tinymce/tinymce.min.js"
+}
