@@ -28,6 +28,15 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/event_categories/{id}', ['as' => 'event_categories.update', 'uses' => 'EventCategoriesController@update']);
     Route::post('/event_categories/delete/{id}', ['as' => 'event_categories.delete', 'uses' => 'EventCategoriesController@delete']);
 
+    // Workplaces
+    Route::get('/workplaces', ['as' => 'workplaces.index', 'uses' => 'WorkplacesController@index']);
+    Route::get('/workplaces/create', ['as' => 'workplaces.create', 'uses' => 'WorkplacesController@create']);
+    Route::post('/workplaces', ['as' => 'workplaces.store', 'uses' => 'WorkplacesController@store']);
+    Route::get('/workplaces/edit/{id}', ['as' => 'workplaces.edit', 'uses' => 'WorkplacesController@edit']);
+    Route::post('/workplaces/{id}', ['as' => 'workplaces.update', 'uses' => 'WorkplacesController@update']);
+    Route::post('/workplaces/delete/{id}', ['as' => 'workplaces.delete', 'uses' => 'WorkplacesController@delete']);
+
+
     // Files
     Route::get('/files', ['as' => 'files.index', 'uses' => 'FilesController@index']);
     Route::get('/files/create', ['as' => 'files.create', 'uses' => 'FilesController@create']);
