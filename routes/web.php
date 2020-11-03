@@ -20,6 +20,19 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/events/{id}', ['as' => 'events.update', 'uses' => 'EventsController@update']);
     Route::post('/events/delete/{id}', ['as' => 'events.delete', 'uses' => 'EventsController@delete']);
 
+    // Users
+    Route::get('/users/create', ['as' => 'users.create', 'uses' => 'UsersController@create']);
+    Route::post('/users/{id}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
+    Route::get('/users', ['as' => 'users.index', 'uses' => 'UsersController@index']);
+    Route::post('/users/delete/{id}', ['as' => 'users.delete', 'uses' => 'UsersController@delete']);
+    Route::get('/users/edit/{id}', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
+    Route::post('/users', ['as' => 'users.store', 'uses' => 'UsersController@store']);
+
+
+
+
+
+
     // EventCategories
     Route::get('/event_categories', ['as' => 'event_categories.index', 'uses' => 'EventCategoriesController@index']);
     Route::get('/event_categories/create', ['as' => 'event_categories.create', 'uses' => 'EventCategoriesController@create']);
