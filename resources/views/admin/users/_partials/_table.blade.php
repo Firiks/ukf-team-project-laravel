@@ -3,10 +3,8 @@
     <tr>
         <th>#</th>
         <th>Meno</th>
-        <th>Priezvisko</th>
         <th>E-mail</th>
-        <th>Študent</th>
-        <th>Pracovník</th>
+        <th>Pozícia</th>
         <th>Pracovisko</th>
     </tr>
     </thead>
@@ -17,11 +15,16 @@
         <tr>
             <td>{{ $user->id }}</td>
             <td>{{ $user->meno}}</td>
-            <td>{{ $user->priezvisko}}</td>
            <td>{{ $user->email}}</td>
-        <!-- <td>{{ $user->student }}</td>
-            <td>{{ $user->pracovnik }}</td>
-            <td>{{$user->pracovisko_id}}-->
+            @if($user->student==1)<td>Študent</td>
+            @elseif($user->pracovnik==1) <td>Pracovník</td>
+            @else()<td>Admin</td>
+
+              @foreach($workplaces as $workplace)
+            @if($workplace->id == $user->user_workplace_id)
+                <td>{{ $workplace->name_sk }}</td>
+                    @endif
+        @endforeach
 
             <td>{{ $user->formatted_created_at }}</td>
             <td>
