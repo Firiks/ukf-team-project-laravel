@@ -20,19 +20,6 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/events/{id}', ['as' => 'events.update', 'uses' => 'EventsController@update']);
     Route::post('/events/delete/{id}', ['as' => 'events.delete', 'uses' => 'EventsController@delete']);
 
-    // Users
-    Route::get('/users/create', ['as' => 'users.create', 'uses' => 'UsersController@create']);
-    Route::post('/users/{id}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
-    Route::get('/users', ['as' => 'users.index', 'uses' => 'UsersController@index']);
-    Route::post('/users/delete/{id}', ['as' => 'users.delete', 'uses' => 'UsersController@delete']);
-    Route::get('/users/edit/{id}', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
-    Route::post('/users', ['as' => 'users.store', 'uses' => 'UsersController@store']);
-
-
-
-
-
-
     // EventCategories
     Route::get('/event_categories', ['as' => 'event_categories.index', 'uses' => 'EventCategoriesController@index']);
     Route::get('/event_categories/create', ['as' => 'event_categories.create', 'uses' => 'EventCategoriesController@create']);
@@ -41,6 +28,14 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/event_categories/{id}', ['as' => 'event_categories.update', 'uses' => 'EventCategoriesController@update']);
     Route::post('/event_categories/delete/{id}', ['as' => 'event_categories.delete', 'uses' => 'EventCategoriesController@delete']);
 
+    // Users
+    Route::get('/users/create', ['as' => 'users.create', 'uses' => 'UsersController@create']);
+    Route::post('/users/{id}', ['as' => 'users.update', 'uses' => 'UsersController@update']);
+    Route::get('/users', ['as' => 'users.index', 'uses' => 'UsersController@index']);
+    Route::post('/users/delete/{id}', ['as' => 'users.delete', 'uses' => 'UsersController@delete']);
+    Route::get('/users/edit/{id}', ['as' => 'users.edit', 'uses' => 'UsersController@edit']);
+    Route::post('/users', ['as' => 'users.store', 'uses' => 'UsersController@store']);
+
     // Workplaces
     Route::get('/workplaces', ['as' => 'workplaces.index', 'uses' => 'WorkplacesController@index']);
     Route::get('/workplaces/create', ['as' => 'workplaces.create', 'uses' => 'WorkplacesController@create']);
@@ -48,7 +43,6 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::get('/workplaces/edit/{id}', ['as' => 'workplaces.edit', 'uses' => 'WorkplacesController@edit']);
     Route::post('/workplaces/{id}', ['as' => 'workplaces.update', 'uses' => 'WorkplacesController@update']);
     Route::post('/workplaces/delete/{id}', ['as' => 'workplaces.delete', 'uses' => 'WorkplacesController@delete']);
-
 
     // Files
     Route::get('/files', ['as' => 'files.index', 'uses' => 'FilesController@index']);
@@ -71,9 +65,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 // FRONTEND Routes
-Route::get('/', function () {
-    return redirect('/sk');
-});
+Route::get('/', function () { return redirect('/sk'); });
 
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
@@ -82,6 +74,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
     Route::get("/kontakt", ['as' => "web.contact", 'uses' => 'PagesController@contact']);
     Route::post("/kontakt", ['as' => "web.contact.post", 'uses' => 'PagesController@email']);
+    Route::get("/calendar",['as'=> "web.calendar", 'uses'=> 'PagesController@calendar']);
 
     Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);

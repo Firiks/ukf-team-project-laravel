@@ -29,9 +29,10 @@
                         </li>
                     </ul>
                 </li>
+
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
-                        <i class="mdi mdi-message"></i>
+                        <i class="mdi mdi-map-marker"></i>
                         <span>Pracoviská<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
                     </a>
                     <ul class="submenu">
@@ -42,6 +43,21 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
+                        <i class="mdi mdi-human-male"></i>
+                        <span>Užívatelia<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('users.index') }}">
+                                Užívatelia
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-file"></i>

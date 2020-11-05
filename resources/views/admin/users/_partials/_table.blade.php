@@ -6,6 +6,8 @@
         <th>E-mail</th>
         <th>Pozícia</th>
         <th>Pracovisko</th>
+        <th>Vytvorené dňa</th>
+        <th>Akcie</th>
     </tr>
     </thead>
 
@@ -14,17 +16,18 @@
     @foreach($users as $user)
         <tr>
             <td>{{ $user->id }}</td>
-            <td>{{ $user->meno}}</td>
-           <td>{{ $user->email}}</td>
-            @if($user->student==1)<td>Študent</td>
-            @elseif($user->pracovnik==1) <td>Pracovník</td>
+            <td>{{ $user->name}}</td>
+            <td>{{ $user->email}}</td>
+            @if($user->student == '1')<td>Študent</td>
+            @elseif($user->pracovnik == '1') <td>Pracovník</td>
             @else()<td>Admin</td>
+            @endif
 
-              @foreach($workplaces as $workplace)
-            @if($workplace->id == $user->user_workplace_id)
-                <td>{{ $workplace->name_sk }}</td>
-                    @endif
-        @endforeach
+            @foreach($workplaces as $workplace)
+                @if($workplace->id == $user->workplace_id)
+                    <td>{{ $workplace->name_sk }}</td>
+                @endif
+            @endforeach
 
             <td>{{ $user->formatted_created_at }}</td>
             <td>

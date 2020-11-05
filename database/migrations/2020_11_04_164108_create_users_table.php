@@ -20,11 +20,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 255);
+            $table->rememberToken();
             $table->tinyInteger('admin')->default(0);
             $table->tinyInteger('super_admin')->default(0);
-            $table->rememberToken();
+            $table->tinyInteger('student')->default(0);
+            $table->tinyInteger('pracovnik')->default(0);
+            $table->bigInteger('workplace_id')->unsigned()->nullable();
+            $table->foreign('workplace_id')->references('id')->on('workplaces')->onDelete('set null')->onUpdate('set null');
             $table->timestamps();
         });
+
     }
 
     /**

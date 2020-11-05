@@ -16,7 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'admin',
+        'super_admin',
+        'student',
+        'pracovnik',
+        'workplace_id'
     ];
 
     /**
@@ -36,4 +42,47 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function images(){
+        return $this->morphMany('App\Image', 'imageable');
+    }
+
+    public function workplace(){
+        return $this->belongsTo('App\Workplace');
+    }
+
+    public function get_image($image){
+        $path = 'data/users/' . $this->id . '/';
+        $image_path = $path . $image;
+
+        return $image_path;
+    }
+
+    public function get_thumb($image){
+        $path = 'data/users/' . $this->id . '/';
+        $image_path = $path . $image;
+
+        return $image_path;
+    }
+
+    public function getProfileImageAttribute(){
+        $path = 'data/users/' . $this->id . '/';
+
+        if($this->images->where('profile', 1)->count() > 0){
+            return $path . $this->images()->where('profile', 1)->first()->image;
+        }else{
+            return false;
+        }
+    }
+
+    public function getProfileThumbAttribute(){
+        $path = 'data/users/' . $this->id . '/';
+
+        if($this->images->where('profile', 1)->count() > 0){
+            return $path . $this->images()->where('profile', 1)->first()->thumb;
+        }else{
+            return false;
+        }
+    }
+
 }
