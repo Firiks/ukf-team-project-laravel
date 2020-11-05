@@ -36,8 +36,12 @@
                                 </div>
                             </div>
 
-                            @include('admin._partials._alert')
-                            @include('admin.users._partials._table')
+                            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                @include('admin.users._partials._form')
+
+                                @include('admin._partials._buttons')
+                            </form>
 
                         </div>
                     </div>

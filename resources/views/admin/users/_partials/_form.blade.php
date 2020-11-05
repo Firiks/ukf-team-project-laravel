@@ -6,12 +6,22 @@
                     <div class="row flex-row">
                         <div class="col-sm-6">
                             <div class="form-group">
+                                <label>Username</label>
+                                <input name="username" type="text" value="{{ old("username", isset($user) ? $user->{"username"} : '') }}" class="form-control {{ $errors->has("username") ? 'parsley-error' : '' }}">
+                                @include('admin._partials._errors', ['column' => "username"])
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
                                 <label>Meno</label>
                                 <input name="name" type="text" value="{{ old("name", isset($user) ? $user->{"name"} : '') }}" class="form-control {{ $errors->has("name") ? 'parsley-error' : '' }}">
                                 @include('admin._partials._errors', ['column' => "name"])
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input name="email" type="text" value="{{ old("email", isset($user) ? $user->{"email"} : '') }}" class="form-control {{ $errors->has("email") ? 'parsley-error' : '' }}">
