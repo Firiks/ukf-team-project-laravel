@@ -65,9 +65,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 // FRONTEND Routes
-Route::get('/', function () {
-    return redirect('/sk');
-});
+Route::get('/', function () { return redirect('/sk'); });
 
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
