@@ -32,10 +32,6 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="javascript:void(0)"></a>
-                            </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                                     <i class="far fa-flag"></i>
@@ -50,6 +46,16 @@
                                         <a href="{{route(Route::currentRouteName(), ['language' => 'en'])}}" class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
                                     @endif
                                 </div>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0)"></a>
+                            </li>
+
+                            <li class="{{ request()->route()->getName() == 'login' ? 'current' : '' }}">
+                                <a href="{{route('login', app()->getLocale())}}" class="nav-item nav-link">
+                                    {{__('Login')}}
+                                </a>
                             </li>
 
                         </ul>
