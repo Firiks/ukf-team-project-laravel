@@ -44,5 +44,9 @@ class PagesController extends Controller
         $path = public_path('data/files/' . $dl->name_sk . '.' . $dl->type);
         return response()->download($path);
     }
+    public function calendar(){
+    $events = Event::orderBy('created_at', 'desc')->get();
 
+    return view('frontend.pages.calendar', compact( 'events'));
+}
 }

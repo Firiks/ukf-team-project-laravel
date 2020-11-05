@@ -23,6 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "air-datepicker": "^2.2.3",
         "dropzone": "^5.7.1",
         "tinymce": "^5.3.1"
     }
