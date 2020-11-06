@@ -31,9 +31,10 @@
                                     {{__('Contact')}}
                                 </a>
                             </li>
+
                             <li class="{{ request()->route()->getName() == 'web.calendar' ? 'current' : '' }}">
-                                <a href="{{route('web.calendar', app()->getLocale())}}" class="nav-item nav-link">
-                                  Kalendár
+                                <a href="{{route('web.calendar', [app()->getLocale(), date('Y-m-d')])}}" class="nav-item nav-link">
+                                    {{ __('Calendar') }}
                                 </a>
                             </li>
 

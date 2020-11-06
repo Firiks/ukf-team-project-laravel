@@ -16,7 +16,7 @@
                         </li>
                         <li>
                             <a href="{{ route('web.events', app()->getLocale()) }}">
-                                Udalosti
+                                {{ __('Events') }}
                             </a>
                         </li>
                         <li>
@@ -68,7 +68,7 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void(0);">
-                                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> {{$event->formatted_created_at}}
+                                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> {{$event->date}}
                                             </a>
                                         </li>
                                     </ul>
