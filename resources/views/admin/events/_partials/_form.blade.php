@@ -45,6 +45,14 @@
                     @include('admin._partials._errors', ['column' => 'event_category_id'])
                 </div>
             </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Dátum a čas</label>
+                    <input name="date" type="datetime-local" value="{{ old("date", date('Y-m-d\TH:i', strtotime($event->date))) }}" class="form-control" {{ $errors->has("date") ? 'parsley-error' : '' }}">
+                    @include('admin._partials._errors', ['column' => "date"])
+                </div>
+            </div>
         </div>
 
         <div class="row">
