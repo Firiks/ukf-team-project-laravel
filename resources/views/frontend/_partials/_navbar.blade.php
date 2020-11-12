@@ -62,6 +62,11 @@
                                     {{__('Login')}}
                                 </a>
                             </li>
+                            <li class="{{ request()->route()->getName() == 'register' ? 'current' : '' }}">
+                                <a href="{{route('register', app()->getLocale())}}" class="nav-item nav-link">
+                                    {{__('Register')}}
+                                </a>
+                            </li>
 
                         </ul>
 

@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="text-center m-0">
-                    <a href="{{ route('web.home') }}" class="logo logo-admin">
+                    <a href="{{route('web.home', app()->getLocale())}}" class="logo logo-admin">
                         <img src="{{ asset('img/admin-logo-mark.png') }}" height="100" alt="logo">
                     </a>
                 </h3>
