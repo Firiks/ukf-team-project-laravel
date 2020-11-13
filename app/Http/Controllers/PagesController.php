@@ -7,6 +7,7 @@ use App\Http\Requests\ContactEmailRequest;
 use App\Mail\ContactMail;
 use App\Event;
 use App\EventCategory;
+use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -22,6 +23,18 @@ class PagesController extends Controller
 
     public function contact(){
         return view('frontend.pages.contact');
+    }
+
+    public function calendar(Request $request, $datum){
+        if ($request->has('date')) {
+            $date = $request->get('date');
+            $events = Event::whereDate('date', $request->get('date'))->get();
+        } else {
+            $events = Event::orderBy('created_at', 'desc')->get();
+            $date = $datum;
+        }
+
+        return view('frontend.pages.calendar' ,compact('events', 'date'));
     }
 
     public function email(ContactEmailRequest $request){
@@ -44,9 +57,11 @@ class PagesController extends Controller
         $path = public_path('data/files/' . $dl->name_sk . '.' . $dl->type);
         return response()->download($path);
     }
+
     public function calendar(){
         $events = Event::orderBy('created_at', 'desc')->get();
 
         return view('frontend.pages.calendar', compact( 'events'));
     }
+
 }

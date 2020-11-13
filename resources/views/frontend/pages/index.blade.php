@@ -35,7 +35,7 @@
                                     <h4>{{ $event->name }}</h4>
                                     <span> {{$event->event_category->name}}</span>
                                     <div class="data-box-grid">
-                                        <p>{{$event->formatted_created_at}}</p>
+                                        <p>{{$event->date}}</p>
                                     </div>
                                     <div class="margin-10px-top">
                                         <a href="{{ route('web.event', ['language' => app()->getLocale(), 'slug' => $event->slug]) }}" class="butn small">
