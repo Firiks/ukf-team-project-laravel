@@ -53,16 +53,10 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/files/delete/{id}', ['as' => 'files.delete', 'uses' => 'FilesController@delete']);
 
 });
-
-
-// AUTH Routes
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+// AUTH ROUTES
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
-
 
 // FRONTEND Routes
 Route::get('/', function () { return redirect('/sk'); });
@@ -70,6 +64,11 @@ Route::get('/', function () { return redirect('/sk'); });
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
 Route::group(['prefix' => '{language}'], function () {
+    // Login
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    // Register
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+
     // Pages
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
     Route::get("/kontakt", ['as' => "web.contact", 'uses' => 'PagesController@contact']);

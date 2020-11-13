@@ -4,6 +4,13 @@
     <div class="wrapper-page">
         <div class="card">
             <div class="card-body">
+                <div class="col-2 text-left">
+                    <a href="{{route('web.home', app()->getLocale())}}">
+                        <button class="btn btn-primary w-md waves-effect waves-light">
+                            <i class="fa fa-arrow-left"></i> Späť
+                        </button>
+                    </a>
+                </div>
                 <h3 class="text-center m-0">
                     <a href="{{ route('dashboard.index') }}" class="logo logo-admin">
                         <img src="{{ asset('img/admin-logo-mark.png') }}" height="100" alt="logo">
@@ -17,14 +24,14 @@
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input name="email" type="text" class="form-control {{ $errors->has('email') ? 'parsley-error' : '' }}" id="email" placeholder="E-mail">
+                            <input name="email" type="text" class="form-control {{ $errors->has('email') ? 'parsley-error' : '' }}" id="email" placeholder=" ">
 
                             @include('admin._partials._errors', ['column' => 'email'])
                         </div>
 
                         <div class="form-group">
                             <label for="password">Heslo</label>
-                            <input name="password" type="password" class="form-control {{ $errors->has('password') ? 'parsley-error' : '' }}" id="password" placeholder="Heslo">
+                            <input name="password" type="password" class="form-control {{ $errors->has('password') ? 'parsley-error' : '' }}" id="password" placeholder=" ">
 
                             @include('admin._partials._errors', ['column' => 'password'])
                         </div>
@@ -39,8 +46,8 @@
                                 </div>
                             </div>
                             <div class="col-6 text-right">
-                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">
-                                    Prihlásiť
+                                <button class="btn btn-info w-md waves-effect waves-light" type="submit">
+                                    Prihlásiť <i class="fa fa-arrow-right"></i>
                                 </button>
                             </div>
                         </div>
