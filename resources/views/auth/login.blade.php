@@ -10,7 +10,7 @@
                     </a>
                 </h3>
                 <div class="p-3">
-                    <h4 class="text-muted font-18 m-b-5 text-center">Admin - Prihlásenie</h4>
+                    <h4 class="text-muted font-18 m-b-5 text-center">Prihlásenie</h4>
 
                     <form action="{{ url('login') }}" method="post" class="form-horizontal m-t-30">
                         @csrf

@@ -4,7 +4,7 @@
         <th>#</th>
         <th>Názov SK</th>
         <th>Kategória</th>
-        <th>Vytvorené dňa</th>
+        <th>Dátum</th>
         <th>Akcie</th>
     </tr>
     </thead>
@@ -20,7 +20,7 @@
                         <td>{{ $category->name_sk }}</td>
                     @endif
                 @endforeach
-                <td>{{ $event->formatted_created_at }}</td>
+                <td>{{ $event->date }}</td>
                 <td>
                     <div class="btn-group text-right" role="group">
                         <button id="row-actions-{{ $event->id }}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

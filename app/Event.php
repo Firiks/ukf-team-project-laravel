@@ -11,6 +11,7 @@ class Event extends BaseModel
         'name_en',
         'slug_en',
         'description_en',
+        'date',
         'event_category_id',
     ];
 

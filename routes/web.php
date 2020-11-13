@@ -74,13 +74,14 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
     Route::get("/kontakt", ['as' => "web.contact", 'uses' => 'PagesController@contact']);
     Route::post("/kontakt", ['as' => "web.contact.post", 'uses' => 'PagesController@email']);
-    Route::get("/calendar",['as'=> "web.calendar", 'uses'=> 'PagesController@calendar']);
+    Route::get("/calendar", ['as' => "web.calendar", 'uses' => 'PagesController@calendar']);
+
+    // Events
+    Route::get("/udalosti", ['as' => "web.events", 'uses' => 'EventsController@index']);
+    Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 
     Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);
         Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PagesController@pracovnik']);
     });
-    // Events
-    Route::get("/udalosti", ['as' => "web.events", 'uses' => 'EventsController@index']);
-    Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 });
