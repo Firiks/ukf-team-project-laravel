@@ -81,4 +81,15 @@ class UsersController extends AdminController
 
         return redirect()->route('users.index');
     }
+
+    public function student(){
+        $workplaces = Workplace::all();
+        return view('frontend.students.index', compact('workplaces'));
+    }
+
+    public function worker(){
+        $workplaces = Workplace::all();
+        return view('frontend.workers.index', compact('workplaces'));
+    }
+
 }
