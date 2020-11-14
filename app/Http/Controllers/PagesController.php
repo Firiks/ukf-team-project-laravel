@@ -58,10 +58,4 @@ class PagesController extends Controller
         return response()->download($path);
     }
 
-    public function calendar(){
-        $events = Event::orderBy('created_at', 'desc')->get();
-
-        return view('frontend.pages.calendar', compact( 'events'));
-    }
-
 }

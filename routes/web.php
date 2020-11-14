@@ -53,10 +53,14 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/files/delete/{id}', ['as' => 'files.delete', 'uses' => 'FilesController@delete']);
 
 });
-// AUTH ROUTES
+
+// AUTH Routes
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
 // FRONTEND Routes
 Route::get('/', function () { return redirect('/sk'); });
@@ -64,10 +68,6 @@ Route::get('/', function () { return redirect('/sk'); });
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
 Route::group(['prefix' => '{language}'], function () {
-    // Login
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    // Register
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 
     // Pages
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
@@ -79,6 +79,7 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/udalosti", ['as' => "web.events", 'uses' => 'EventsController@index']);
     Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 
+    // User Dashboards
     Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);
         Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PagesController@pracovnik']);
