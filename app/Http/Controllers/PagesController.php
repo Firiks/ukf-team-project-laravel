@@ -67,4 +67,5 @@ class PagesController extends Controller
     public function studentWorkplaces(){
         return view('frontend.student.workplaces.index');
     }
+
 }

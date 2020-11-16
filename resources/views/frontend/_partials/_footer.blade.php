@@ -23,6 +23,11 @@
                             {{ __('Contact') }}
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('web.calendar', app()->getLocale()) }}">
+                            {{ __('Calendar') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
 

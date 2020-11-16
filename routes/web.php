@@ -53,10 +53,11 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/files/delete/{id}', ['as' => 'files.delete', 'uses' => 'FilesController@delete']);
 
 });
-// AUTH ROUTES
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::post('register', 'Auth\RegisterController@register');
+
+// AUTH Routes
+Route::post('/login', ['as' => "login.post", "uses" => 'Auth\LoginController@login']);
+Route::get('/logout', ['as' => "logout", 'uses' => 'Auth\LoginController@logout']);
+Route::post('/register', ['as' => "register.post", 'uses' => 'Auth\RegisterController@register']);
 
 // FRONTEND Routes
 Route::get('/', function () { return redirect('/sk'); });
@@ -64,10 +65,10 @@ Route::get('/', function () { return redirect('/sk'); });
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
 Route::group(['prefix' => '{language}'], function () {
-    // Login
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    // Register
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+
+    // AUTH Routes
+    Route::get('/login', ['as' => "login", 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::get('/register', ['as' => "register", 'uses' => 'Auth\RegisterController@showRegistrationForm']);
 
     // Pages
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
@@ -83,8 +84,11 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'PagesController@studentEvents']);
     Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'PagesController@studentWorkplaces']);
 
+    // User Dashboards
     Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);
         Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PagesController@pracovnik']);
+        Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'PagesController@studentEvents']);
+        Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'PagesController@studentWorkplaces']);
     });
 });
