@@ -43,13 +43,13 @@
                         <ul class="navbar-nav ml-auto align-items-center" id="nav" style="display: none;">
 
                             <li>
-                                <a href="{{route('login')}}" class="nav-item nav-link">
+                                <a href="{{route('login', app()->getLocale())}}" class="nav-item nav-link">
                                     {{__('Login')}}
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{route('register')}}" class="nav-item nav-link">
+                                <a href="{{route('register', app()->getLocale())}}" class="nav-item nav-link">
                                     {{__('Register')}}
                                 </a>
                             </li>

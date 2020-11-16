@@ -55,12 +55,9 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
 });
 
 // AUTH Routes
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-Route::post('register', 'Auth\RegisterController@register');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/login', ['as' => "login.post", "uses" => 'Auth\LoginController@login']);
+Route::get('/logout', ['as' => "logout", 'uses' => 'Auth\LoginController@logout']);
+Route::post('/register', ['as' => "register.post", 'uses' => 'Auth\RegisterController@register']);
 
 // FRONTEND Routes
 Route::get('/', function () { return redirect('/sk'); });
@@ -68,6 +65,10 @@ Route::get('/', function () { return redirect('/sk'); });
 Route::get("/file/download/{id}", ['as' => 'download-file', 'uses' => 'PagesController@download_file']);
 
 Route::group(['prefix' => '{language}'], function () {
+
+    // AUTH Routes
+    Route::get('/login', ['as' => "login", 'uses' => 'Auth\LoginController@showLoginForm']);
+    Route::get('/register', ['as' => "register", 'uses' => 'Auth\RegisterController@showRegistrationForm']);
 
     // Pages
     Route::get("/", ['as' => "web.home", 'uses' => 'PagesController@index']);
