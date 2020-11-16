@@ -58,4 +58,14 @@ class PagesController extends Controller
         return response()->download($path);
     }
 
+    public function student(){
+        return view('frontend.student.index');
+    }
+    public function studentEvents(){
+        return view('frontend.student.events.index');
+    }
+    public function studentWorkplaces(){
+        return view('frontend.student.workplaces.index');
+    }
+
 }

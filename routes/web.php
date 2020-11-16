@@ -80,9 +80,15 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/udalosti", ['as' => "web.events", 'uses' => 'EventsController@index']);
     Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 
+    Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);
+    Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'PagesController@studentEvents']);
+    Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'PagesController@studentWorkplaces']);
+
     // User Dashboards
     Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'PagesController@student']);
         Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PagesController@pracovnik']);
+        Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'PagesController@studentEvents']);
+        Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'PagesController@studentWorkplaces']);
     });
 });
