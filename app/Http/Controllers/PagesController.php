@@ -67,5 +67,14 @@ class PagesController extends Controller
     public function studentWorkplaces(){
         return view('frontend.student.workplaces.index');
     }
+    public function pracovnik(){
+        return view('frontend.workers.index');
+    }
+    public function pracovnikEvents(){
+        return view('frontend.workers.events.index');
+    }
+    public function pracovnikWorkplaces(){
+        return view('frontend.workers.workplaces.index');
+    }
 
 }
