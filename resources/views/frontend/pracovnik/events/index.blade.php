@@ -1,4 +1,4 @@
-@extends('layout.student')
+@extends('layout.pracovnik')
 @section('page-title')
     Udalosti
 @endsection
@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <p class="text-muted m-b-30 text-right">
-                                        <a href="{{ route('student.events.create', ['language' => app()->getLocale()]) }}" class="btn btn-primary waves-effect waves-light">
+                                        <a href="{{ route('pracovnik.events.create', ['language' => app()->getLocale()]) }}" class="btn btn-primary waves-effect waves-light">
                                             <i class="fa fa-plus pr-2"></i>
                                             Pridať udalosť
                                         </a>
@@ -25,8 +25,8 @@
                                 </div>
                             </div>
 
-                            @include('frontend.student._partials._alert')
-                            @include('frontend.student._partials._table')
+                            @include('frontend.pracovnik._partials._alert')
+                            @include('frontend.pracovnik._partials._table')
 
                         </div>
                     </div>

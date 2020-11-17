@@ -33,7 +33,7 @@
         @include('frontend._partials._navbar')
     </header>
 
-    @include('frontend.workers._partials._menu')
+    @include('frontend.pracovnik._partials._menu')
     @yield('content')
 
     @include('frontend._partials._footer')
