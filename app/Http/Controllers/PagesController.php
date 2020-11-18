@@ -57,24 +57,4 @@ class PagesController extends Controller
         $path = public_path('data/files/' . $dl->name_sk . '.' . $dl->type);
         return response()->download($path);
     }
-
-    public function student(){
-        return view('frontend.student.index');
-    }
-    public function studentEvents(){
-        return view('frontend.student.events.index');
-    }
-    public function studentWorkplaces(){
-        return view('frontend.student.workplaces.index');
-    }
-    public function pracovnik(){
-        return view('frontend.workers.index');
-    }
-    public function pracovnikEvents(){
-        return view('frontend.workers.events.index');
-    }
-    public function pracovnikWorkplaces(){
-        return view('frontend.workers.workplaces.index');
-    }
-
 }

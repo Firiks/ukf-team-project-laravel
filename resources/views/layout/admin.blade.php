@@ -40,43 +40,34 @@
 
 <!-- SCRIPTS -->
 <script src="{{ asset('js/admin.min.js') }}" type="text/javascript"></script>
-<!-- SCRIPTS -->
-<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/nav-menu.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/search.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/easy.responsive.tabs.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.counterup.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.stellar.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/waypoints.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('js/tabs.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/countdown.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.magnific-popup.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/isotope.pkgd.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/chart.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.themepunch.tools.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jquery.themepunch.revolution.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.actions.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.carousel.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.kenburn.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('js/revolution.extension.layeranimation.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.migration.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.navigation.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.parallax.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.slideanims.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/revolution.extension.video.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/map.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('js/addRow.js') }}" type="text/javascript"></script>
-
 @yield('js')
+
+<script>
+    $(document).ready(function () {
+        if($(".tinymce").length > 0){
+            tinymce.init({
+                selector: "textarea.tinymce",
+                theme: "modern",
+                height:300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                    "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | print preview fullpage | forecolor backcolor emoticons",
+                style_formats: [
+                    {title: 'Bold text', inline: 'b'},
+                    {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                    {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                    {title: 'Example 1', inline: 'span', classes: 'example1'},
+                    {title: 'Example 2', inline: 'span', classes: 'example2'},
+                    {title: 'Table styles'},
+                    {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+                ]
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-@extends('layout.worker')
+@extends('layout.pracovnik')
 
 @section('content')
     <section class="bg-light-gray">

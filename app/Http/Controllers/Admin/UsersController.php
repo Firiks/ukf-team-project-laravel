@@ -89,7 +89,7 @@ class UsersController extends AdminController
 
     public function worker(){
         $workplaces = Workplace::all();
-        return view('frontend.workers.index', compact('workplaces'));
+        return view('frontend.pracovnik.index', compact('workplaces'));
     }
 
 }

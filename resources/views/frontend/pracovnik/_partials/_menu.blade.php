@@ -11,7 +11,7 @@
 
                             <li class="{{ request()->route()->getName() == 'pracovnik.events' || request()->route()->getName() == 'pracovnik.events' ? 'current' : '' }}">
                                 <a href="{{route('pracovnik.events', app()->getLocale())}}" class="nav-item nav-link">
-                                    {{__('Events')}}
+                                    Pridať udalosť
                                 </a>
                             </li>
 
