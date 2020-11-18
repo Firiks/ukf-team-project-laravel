@@ -1,9 +1,9 @@
 <div class="topbar">
     <div class="topbar-left">
         <a href="{{ route('dashboard.index') }}" class="logo">
-            <span><img src="{{ asset('img/admin-logo-white.png') }}" height="40"></span>
+            <span><img src="{{ asset('img/admin-logo-white.png') }}" height="80" alt="Logo"></span>
             <i>
-                <img src="{{ asset('img/admin-logo-mark-white.png') }}" height="40">
+                <img src="{{ asset('img/admin-logo-mark-white.png') }}" height="80" alt="Logo">
             </i>
         </a>
     </div>
