@@ -1,31 +1,8 @@
 @extends('layout.frontend')
 
 @section('content')
-    <section class="page-title-section2 bg-img cover-background" data-overlay-dark="7" data-background="img/bg/bg9.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 section-heading">
-                    <h1>{{__('Contact')}}</h1>
-                    <div class="col-md-12">
-                        <ul>
-                            <li>
-                                <a href="{{ route('web.home', app()->getLocale()) }}">
-                                    {{ __('Home') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    {{ __('Contact') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section>
+    <section class="bg-light-gray">
         <div class="container">
             <div class="text-center section-heading">
                 <h3>{{ __('If you have any questions just contact us') }}</h3>

@@ -2,22 +2,12 @@
 
 @section('content')
 
-    <!-- Introduction -->
+    <!-- Events -->
     <section class="bg-light-gray">
         <div class="container">
-            <div class="text-center section-heading">
-                <h1>{{__('Welcome')}}</h1>
-                <h4 class="text-center">{{__('This is the events calendar')}}</h4>
-            </div>
-            <h6 class="text-center">{{__('You will find current info on the upcoming events here')}}</h6>
-        </div>
-    </section>
-
-    <!-- Events -->
-    <section>
-        <div class="container">
             <div class="section-heading">
-                <h3>{{__('Upcoming events')}}</h3>
+                <h5>{{__('University of Konstantine the Philosopher Event Calendar')}}</h5>
+                <h6>{{__('Upcoming events')}}</h6>
             </div>
             @foreach($events->chunk(3) as $items)
                 <div class="row">
