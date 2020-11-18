@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Pracovnik;
 
 use App\Event;
 use App\EventCategory;
@@ -10,16 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 
-class StudentController extends Controller
+class PracovnikController extends Controller
 {
     use UploadTrait;
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     public function index(){
-        return view('frontend.student.index');
+        return view('frontend.pracovnik.index');
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -27,20 +23,20 @@ class StudentController extends Controller
         $request->session()->flash('message', $message);
     }
 
-    public function studentEvents(){
+    public function pracovnikEvents(){
         $events = Event::orderBy('created_at', 'desc')->get();
         $categories = EventCategory::all();
 
-        return view('frontend.student.events.index', compact('events','categories'));
+        return view('frontend.pracovnik.events.index', compact('events','categories'));
     }
 
-    public function studentEventCreate(){
+    public function pracovnikEventCreate(){
         $categories = EventCategory::all();
 
-        return view('frontend.student.events.create', compact('categories'));
+        return view('frontend.pracovnik.events.create', compact('categories'));
     }
 
-    public function studentEventStore(CreateEventRequest $request){
+    public function pracovnikEventStore(CreateEventRequest $request){
         $event = Event::create($request->all());
 
         // GENERATE SLUGs
@@ -74,10 +70,10 @@ class StudentController extends Controller
 
         $this->_setFlashMessage($request, 'success', "Udalosť <b>$event->name_sk</b> úspešne vytvorená.");
 
-        return redirect()->route('student.events', ['language' => app()->getLocale()]);
+        return redirect()->route('pracovnik.events', ['language' => app()->getLocale()]);
     }
 
     public function studentWorkplaces(){
-        return view('frontend.student.workplaces.index');
+        return view('frontend.pracovnik.workplaces.index');
     }
 }

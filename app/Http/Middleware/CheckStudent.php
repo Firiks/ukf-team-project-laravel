@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckUser
+class CheckStudent
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,9 @@ class CheckUser
     public function handle($request, Closure $next)
     {
         if (!auth()->check() || !auth()->user()->student){
-            return redirect('/student');
+            return redirect('/');
         }
-        else if (!auth()->check() || !auth()->user()->pracovnik){
-            return redirect('/pracovnik');
-        }
+
         return $next($request);
     }
 }

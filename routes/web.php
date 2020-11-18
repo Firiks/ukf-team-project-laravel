@@ -80,21 +80,24 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/udalosti", ['as' => "web.events", 'uses' => 'EventsController@index']);
     Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 
-    // User Dashboards
+    // Users Dashboards
+
     // Student
     Route::middleware(['auth', 'student'])->namespace('Student')->prefix('student')->group(function() {
-        Route::get("/student", ['as' => "web.student", 'uses' => 'StudentController@index']);
-        Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'StudentController@studentEvents']);
-        Route::get("/student/udalosti/create", ['as' => "student.events.create", 'uses' => 'StudentController@studentEventCreate']);
-        Route::post('/student/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
-        Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
+        Route::get("/", ['as' => "web.student", 'uses' => 'StudentController@index']);
+        Route::get("/udalosti", ['as' => "student.events", 'uses' => 'StudentController@studentEvents']);
+        Route::get("/udalosti/create", ['as' => "student.events.create", 'uses' => 'StudentController@studentEventCreate']);
+        Route::post('/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
+        Route::get("/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
+
     });
+
     // Pracovnik
     Route::middleware(['auth', 'pracovnik'])->namespace('Pracovnik')->prefix('pracovnik')->group(function() {
-        Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PracovnikController@index']);
-        Route::get("/pracovnik/udalosti", ['as' => "pracovnik.events", 'uses' => 'PracovnikController@pracovnikEvents']);
-        Route::get("/pracovnik/udalosti/create", ['as' => "pracovnik.events.create", 'uses' => 'PracovnikController@pracovnikEventCreate']);
-        Route::post('/pracovnik/udalosti', ['as' => 'pracovnik.events.store', 'uses' => 'PracovnikController@pracovnikEventStore']);
-        Route::get("/pracovnik/pracoviska", ['as' => "pracovnik.workplaces", 'uses' => 'PracovnikController@pracovnikWorkplaces']);
+        Route::get("/", ['as' => "web.pracovnik", 'uses' => 'PracovnikController@index']);
+        Route::get("//udalosti", ['as' => "pracovnik.events", 'uses' => 'PracovnikController@pracovnikEvents']);
+        Route::get("/udalosti/create", ['as' => "pracovnik.events.create", 'uses' => 'PracovnikController@pracovnikEventCreate']);
+        Route::post('/udalosti', ['as' => 'pracovnik.events.store', 'uses' => 'PracovnikController@pracovnikEventStore']);
+        Route::get("/pracoviska", ['as' => "pracovnik.workplaces", 'uses' => 'PracovnikController@pracovnikWorkplaces']);
     });
 });

@@ -27,12 +27,12 @@ class LoginController extends Controller
      * @var string
      */
     public function redirectTo() {
-        if (Auth::user()->admin) {
+        if (Auth::user()->admin == 1) {
             return '/admin';
-        } elseif (Auth::user()->student) {
-            return '/student';
-        } elseif (Auth::user()->pracovnik) {
-            return '/pracovnik';
+        } elseif (Auth::user()->student == 1) {
+            return route('web.student', 'sk');
+        } elseif (Auth::user()->pracovnik == 1) {
+            return route('web.pracovnik', 'sk');
         } else {
             return '/sk';
         }

@@ -7,7 +7,7 @@
 
     <meta name="robots" content="index,follow">
     <meta name="description" content="">
-    <meta name="author" content="DeMi Studio, s.r.o.">
+    <meta name="author" content="Matej Mozola">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

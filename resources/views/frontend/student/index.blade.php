@@ -7,7 +7,7 @@
                 <h1>Študent</h1>
                 <h4 class="text-center">Toto je rozhranie pre študenta</h4>
             </div>
-            <h6 class="text-center">Nájdete tu údaje ktoré sa tikaju študenta.</h6>
+            <h6 class="text-center">Nájdete tu údaje ktoré sa tykaju študenta.</h6>
         </div>
     </section>
 @endsection
