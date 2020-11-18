@@ -14,6 +14,10 @@ class StudentController extends Controller
 {
     use UploadTrait;
 
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index(){
         return view('frontend.student.index');
     }

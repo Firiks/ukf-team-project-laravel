@@ -81,14 +81,16 @@ Route::group(['prefix' => '{language}'], function () {
     Route::get("/udalosti/{slug}", ['as' => "web.event" , 'uses' => 'EventsController@show']);
 
     // User Dashboards
-    Route::middleware(['auth', 'user'])->namespace('User')->prefix('user')->group(function() {
-        // Student
+    // Student
+    Route::middleware(['auth', 'student'])->namespace('Student')->prefix('student')->group(function() {
         Route::get("/student", ['as' => "web.student", 'uses' => 'StudentController@index']);
         Route::get("/student/udalosti", ['as' => "student.events", 'uses' => 'StudentController@studentEvents']);
         Route::get("/student/udalosti/create", ['as' => "student.events.create", 'uses' => 'StudentController@studentEventCreate']);
         Route::post('/student/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
         Route::get("/student/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
-        // Pracovnik
+    });
+    // Pracovnik
+    Route::middleware(['auth', 'pracovnik'])->namespace('Pracovnik')->prefix('pracovnik')->group(function() {
         Route::get("/pracovnik", ['as' => "web.pracovnik", 'uses' => 'PracovnikController@index']);
         Route::get("/pracovnik/udalosti", ['as' => "pracovnik.events", 'uses' => 'PracovnikController@pracovnikEvents']);
         Route::get("/pracovnik/udalosti/create", ['as' => "pracovnik.events.create", 'uses' => 'PracovnikController@pracovnikEventCreate']);
