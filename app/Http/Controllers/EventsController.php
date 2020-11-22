@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class EventsController extends Controller
 {
     public function index(Request $request){
-        $events = Event::orderBy('created_at', 'desc');
+        $events = Event::orderBy('date', 'asc');
 
         if($category = $request->event_category_id){
             $events = $events->where('event_category_id', $category);

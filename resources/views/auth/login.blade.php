@@ -52,6 +52,12 @@
                             </div>
                         </div>
                     </form>
+                    <div class="text-center">
+                        <b>{{__('Not registered yet?')}}</b><br>
+                        <a href="{{route('register', app()->getLocale())}}" class="btn btn-info btn-very-small">
+                            <span>{{__('Register')}}</span> <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
             </div>

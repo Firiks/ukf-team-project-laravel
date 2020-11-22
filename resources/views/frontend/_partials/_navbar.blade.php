@@ -48,12 +48,6 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="{{route('register', app()->getLocale())}}" class="nav-item nav-link">
-                                    {{__('Register')}}
-                                </a>
-                            </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                                     <i class="far fa-flag"></i>

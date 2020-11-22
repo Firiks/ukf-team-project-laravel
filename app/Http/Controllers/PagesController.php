@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 class PagesController extends Controller
 {
     public function index(){
-        $events = Event::orderBy('created_at', 'desc')->get();
+        $events = Event::orderBy('date', 'asc')->get();
 
         return view('frontend.pages.index', compact( 'events'));
     }
@@ -30,7 +30,7 @@ class PagesController extends Controller
             $date = $request->get('date');
             $events = Event::whereDate('date', $request->get('date'))->get();
         } else {
-            $events = Event::orderBy('created_at', 'desc')->get();
+            $events = Event::orderBy('date', 'asc')->get();
             $date = $datum;
         }
 

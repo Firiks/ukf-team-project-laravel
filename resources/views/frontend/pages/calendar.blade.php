@@ -1,39 +1,12 @@
 @extends('layout.frontend')
 
 @section('content')
-
-    <!-- Head banner -->
-    <section class="page-title-section2 bg-img cover-background" data-overlay-dark="7" data-background="img/bg/bg9.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 section-heading">
-                    <h1>{{__('Calendar')}}</h1>
-                    <div class="col-md-12">
-                        <ul>
-                            <li>
-                                <a href="{{ route('web.home', app()->getLocale()) }}">
-                                    {{ __('Home') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    {{ __('Calendar') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Date form -->
-    <section>
+    <section class="bg-light-gray">
         <div class="container">
             <div class="text-center section-heading">
                 <h3>{{__('Choose a date')}}</h3>
             </div>
-
             <form action="{{ route('web.calendar', [app()->getLocale(), request()->get('date')])  }}">
                 <div class="form-group">
                     <div class="input-group">
@@ -47,11 +20,7 @@
                 </div>
             </form>
         </div>
-
-    </section>
-
     <!-- Events -->
-    <section>
         <div class="container">
             @foreach($events->chunk(3) as $items)
                 <div class="row">
@@ -84,5 +53,4 @@
             @endforeach
         </div>
     </section>
-
 @endsection
