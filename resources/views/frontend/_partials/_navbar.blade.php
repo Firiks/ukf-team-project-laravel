@@ -33,7 +33,8 @@
                             </li>
 
                             <li class="{{ request()->route()->getName() == 'web.calendar' ? 'current' : '' }}">
-                                <a href="{{route('web.calendar', [app()->getLocale(), date('Y-m-d')])}}" class="nav-item nav-link">
+                                <a href="{{route('web.calendar', [app()->getLocale(), date('Y-m-d')])}}"
+                                   class="nav-item nav-link">
                                     {{ __('Calendar') }}
                                 </a>
                             </li>
@@ -42,24 +43,64 @@
 
                         <ul class="navbar-nav ml-auto align-items-center" id="nav" style="display: none;">
 
-                            <li>
-                                <a href="{{route('login', app()->getLocale())}}" class="nav-item nav-link">
-                                    {{__('Login')}}
-                                </a>
-                            </li>
 
+                            <!--ikona-->
+                            @guest
+                                <li>
+                                    <a href="{{route('login', app()->getLocale())}}" class="nav-item nav-link">
+                                        {{__('Login')}}
+                                    </a>
+                                </li>
+
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-toggle="dropdown">
+                                        <img src="{{ asset('img/user-image.png') }}" alt="user" class="rounded-circle" width="30">
+                                        {{ Auth::user()->email }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a href="{{route('web.student', app()->getLocale())}}" class="dropdown-item">
+                                            <i class="fa fa-user"></i>
+                                            Nastavenia
+                                        </a>
+                                        @if(Auth::user()->admin ==1)
+                                            <a href="{{route('dashboard.index',app()->getLocale())}}"
+                                               class="dropdown-item">
+                                                <i class="fa fa-spin fa-cog"></i>
+                                                Admin
+                                            </a>
+                                        @endif
+
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{route('logout',app()->getLocale())}}"
+                                           class="dropdown-item text-danger">
+                                            <i class="fa fa-power-off"></i>
+                                            {{__('Logout')}}
+                                        </a>
+                                    </div>
+                                </li>
+                        @endguest
+
+
+                        <!--koniec-->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown">
                                     <i class="far fa-flag"></i>
                                     {{app()->getLocale()}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if( isset($event) )
-                                        <a href="{{route(Route::currentRouteName(), ['language' => 'sk', 'slug' => $event->slug_sk])}}" class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
-                                        <a href="{{route(Route::currentRouteName(), ['language' => 'en', 'slug' => $event->slug_en])}}" class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'sk', 'slug' => $event->slug_sk])}}"
+                                           class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'en', 'slug' => $event->slug_en])}}"
+                                           class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
                                     @else()
-                                        <a href="{{route(Route::currentRouteName(), ['language' => 'sk'])}}" class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
-                                        <a href="{{route(Route::currentRouteName(), ['language' => 'en'])}}" class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'sk'])}}"
+                                           class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'en'])}}"
+                                           class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
                                     @endif
                                 </div>
                             </li>
