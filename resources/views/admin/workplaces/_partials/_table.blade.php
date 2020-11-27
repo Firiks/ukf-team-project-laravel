@@ -4,6 +4,7 @@
         <th>#</th>
         <th>Názov SK</th>
         <th>Názov EN</th>
+        <th>Fakulta</th>
         <th>Akcie</th>
     </tr>
     </thead>
@@ -15,6 +16,11 @@
             <td>{{ $workplace->id }}</td>
             <td>{{ $workplace->name_sk }}</td>
             <td>{{ $workplace->name_en }}</td>
+            @foreach($faculties as $faculty)
+                @if($faculty->id == $workplace->faculty_id)
+                    <td>{{ $faculty->name_sk }}</td>
+                @endif
+            @endforeach
             <td>
                 <div class="btn-group text-right" role="group">
                     <button id="row-actions-{{ $workplace->id }}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

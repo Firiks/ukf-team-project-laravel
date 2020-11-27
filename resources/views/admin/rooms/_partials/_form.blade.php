@@ -15,26 +15,9 @@
                         </div>
 
                     </div>
+
                 </div>
             @endforeach
-            <div class="pl-3">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Fakulta</label>
-                            <select name="faculty_id" class="form-control">
-                                <option value="">Vyberte fakultu</option>
-                                @foreach($faculties as $faculty)
-                                    <option value="{{ $faculty->id }}" {{ old('faculty_id') == $faculty->id ? 'selected' : (isset($workplace) && $workplace->faculty_id == $faculty->id ? 'selected' : '') }}>
-                                        {{ $faculty->name_sk }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @include('admin._partials._errors', ['column' => 'workplace_id'])
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
