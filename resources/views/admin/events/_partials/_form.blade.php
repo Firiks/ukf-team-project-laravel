@@ -43,8 +43,46 @@
                         @endforeach
                     </select>
                     @include('admin._partials._errors', ['column' => 'event_category_id'])
+
+                    </select>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Fakulta</label>
+                        <select name="event_faculty_id" class="form-control">
+                            <option value="">Vyberte fakultu</option>
+                            @foreach($faculties as $faculty)
+                                <option value="{{ $faculty->id }}" {{ old('event_faculty_id') == $faculty->id ? 'selected' : (isset($event) && $event->event_faculty_id == $faculty->id ? 'selected' : '') }}>
+                                    {{ $faculty->name_sk }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @include('admin._partials._errors', ['column' => 'event_faculty_id'])
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Učebna</label>
+                            <select name="event_room_id" class="form-control">
+                                <option value="">Vyberte učebňu</option>
+                                @foreach($rooms as $room)
+                                    <option value="{{ $room->id }}" {{ old('event_room_id') == $room->id ? 'selected' : (isset($event) && $event->event_room_id == $room->id ? 'selected' : '') }}>
+                                        {{ $room->name_sk }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @include('admin._partials._errors', ['column' => 'event_room_id'])
+
+                            </select>
+                        </div>
+                    </div>
 
             <div class="col-sm-6">
                 <div class="form-group">

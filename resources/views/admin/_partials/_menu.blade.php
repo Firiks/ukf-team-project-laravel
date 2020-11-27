@@ -46,6 +46,20 @@
 
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
+                        <i class="mdi mdi-school"></i>
+                        <span>Fakulty<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('faculties.index') }}">
+                                Fakulty
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-human-male"></i>
                         <span>Užívatelia<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
                     </a>
