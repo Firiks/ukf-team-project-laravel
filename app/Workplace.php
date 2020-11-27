@@ -8,11 +8,16 @@ class Workplace extends BaseModel
         'name_sk',
         'name_en',
         'slug_sk',
-        'slug_en'
+        'slug_en',
+        'faculty_id'
     ];
 
     public function users(){
         return $this->hasMany('App\User');
+    }
+
+    public function faculty(){
+        return $this->belongsTo('App\Faculty');
     }
 
     public function getNameAttribute(){

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkplacesTable extends Migration
+class CreateFacultiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateWorkplacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('workplaces', function (Blueprint $table) {
+        Schema::create('faculties', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name_sk', 255);
             $table->string('slug_sk', 255)->nullable();
             $table->string('name_en', 255);
             $table->string('slug_en', 255)->nullable();
-            $table->bigInteger('faculty_id')->unsigned()->nullable();
-            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null')->onUpdate('set null');
-            $table->timestamps();
+            $table->text('description_sk')->nullable();
+            $table->text('description_en')->nullable();
         });
     }
 
@@ -32,6 +31,6 @@ class CreateWorkplacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workplaces');
+        Schema::dropIfExists('faculties');
     }
 }
