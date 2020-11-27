@@ -44,6 +44,22 @@ Route::middleware(['auth', 'admin'])->namespace('Admin')->prefix('admin')->group
     Route::post('/workplaces/{id}', ['as' => 'workplaces.update', 'uses' => 'WorkplacesController@update']);
     Route::post('/workplaces/delete/{id}', ['as' => 'workplaces.delete', 'uses' => 'WorkplacesController@delete']);
 
+    // Faculties
+    Route::get('/faculties', ['as' => 'faculties.index', 'uses' => 'FacultiesController@index']);
+    Route::get('/faculties/create', ['as' => 'faculties.create', 'uses' => 'FacultiesController@create']);
+    Route::post('/faculties', ['as' => 'faculties.store', 'uses' => 'FacultiesController@store']);
+    Route::get('/faculties/edit/{id}', ['as' => 'faculties.edit', 'uses' => 'FacultiesController@edit']);
+    Route::post('/faculties/{id}', ['as' => 'faculties.update', 'uses' => 'FacultiesController@update']);
+    Route::post('/faculties/delete/{id}', ['as' => 'faculties.delete', 'uses' => 'FacultiesController@delete']);
+
+    // Rooms
+    Route::get('/rooms', ['as' => 'rooms.index', 'uses' => 'RoomsController@index']);
+    Route::get('/rooms/create', ['as' => 'rooms.create', 'uses' => 'RoomsController@create']);
+    Route::post('/rooms', ['as' => 'rooms.store', 'uses' => 'RoomsController@store']);
+    Route::get('/rooms/edit/{id}', ['as' => 'rooms.edit', 'uses' => 'RoomsController@edit']);
+    Route::post('/rooms/{id}', ['as' => 'rooms.update', 'uses' => 'RoomsController@update']);
+    Route::post('/rooms/delete/{id}', ['as' => 'rooms.delete', 'uses' => 'RoomsController@delete']);
+
     // Files
     Route::get('/files', ['as' => 'files.index', 'uses' => 'FilesController@index']);
     Route::get('/files/create', ['as' => 'files.create', 'uses' => 'FilesController@create']);
@@ -90,7 +106,6 @@ Route::group(['prefix' => '{language}'], function () {
         Route::post('/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
         Route::get("/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
         Route::get('/pracoviska/save/{id}', ['as' => 'student.workplaces.save', 'uses' => 'StudentController@studentWorkplacesSave']);
-
     });
 
     // Pracovnik
