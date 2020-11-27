@@ -6,6 +6,7 @@
         <th>Kategória</th>
         <th>Dátum</th>
         <th>Akcie</th>
+
     </tr>
     </thead>
 
