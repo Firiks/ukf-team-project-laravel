@@ -6,6 +6,7 @@ use App\Event;
 use App\EventCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Workplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
@@ -74,6 +75,11 @@ class StudentController extends Controller
     }
 
     public function studentWorkplaces(){
-        return view('frontend.student.workplaces.index');
+        $workplaces = Workplace::orderBy('created_at', 'desc')->get();
+        return view('frontend.student.workplaces.index', compact('workplaces'));
+    }
+    public function studentWorkplaceSave($id) {
+        // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
+        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
     }
 }

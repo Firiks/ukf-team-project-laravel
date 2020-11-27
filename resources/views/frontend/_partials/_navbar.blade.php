@@ -60,10 +60,18 @@
                                         {{ Auth::user()->email }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a href="{{route('web.student', app()->getLocale())}}" class="dropdown-item">
-                                            <i class="fa fa-user"></i>
-                                            Nastavenia
-                                        </a>
+                                        @if (Auth::user()->student == 1)
+                                            <a href="{{route('web.student', app()->getLocale())}}" class="dropdown-item">
+                                                <i class="fa fa-user"></i>
+                                                Nastavenia
+                                            </a>
+                                        @endif
+                                            @if (Auth::user()->pracovnik == 1)
+                                                <a href="{{route('web.pracovnik', app()->getLocale())}}" class="dropdown-item">
+                                                    <i class="fa fa-user"></i>
+                                                    Nastavenia
+                                                </a>
+                                            @endif
                                         @if(Auth::user()->admin ==1)
                                             <a href="{{route('dashboard.index',app()->getLocale())}}"
                                                class="dropdown-item">

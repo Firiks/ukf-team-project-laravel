@@ -6,6 +6,7 @@ use App\Event;
 use App\EventCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Workplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
@@ -73,7 +74,13 @@ class PracovnikController extends Controller
         return redirect()->route('pracovnik.events', ['language' => app()->getLocale()]);
     }
 
-    public function studentWorkplaces(){
-        return view('frontend.pracovnik.workplaces.index');
+    public function pracovnikWorkplaces(){
+        $workplaces = Workplace::orderBy('created_at', 'desc')->get();
+        return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
+    }
+
+    public function pracovnikWorkplaceSave($id) {
+        // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
+        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
     }
 }
