@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Faculty;
 use App\Http\Requests\CreateWorkplaceRequest;
 use App\Http\Requests\UpdateWorkplaceRequest;
 use App\Workplace;
@@ -12,13 +13,16 @@ class WorkplacesController extends AdminController
 {
     public function index(){
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
+        $faculties = Faculty::all();
 
-        return view('admin.workplaces.index', compact('workplaces'));
+        return view('admin.workplaces.index', compact('workplaces', 'faculties'));
     }
 
     public function create(){
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
 
-        return view('admin.workplaces.create');
+        return view('admin.workplaces.create', compact('faculties', 'workplaces'));
     }
 
     public function store(CreateWorkplaceRequest $request){
@@ -46,8 +50,10 @@ class WorkplacesController extends AdminController
 
     public function edit($id){
         $workplace = Workplace::findOrFail($id);
+        $faculties = Faculty::all();
 
-        return view('admin.workplaces.edit', compact('workplace'));
+        return view('admin.workplaces.edit', compact('faculties', 'workplace'));
+
     }
 
     public function update(UpdateWorkplaceRequest $request, $id){

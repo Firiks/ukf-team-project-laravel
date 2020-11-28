@@ -78,8 +78,8 @@ class StudentController extends Controller
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
         return view('frontend.student.workplaces.index', compact('workplaces'));
     }
-    public function studentWorkplaceSave($id) {
+    public function studentWorkplacesSave($id) {
         // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
-        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
+        return redirect()->route('student.workplaces', ['language' => app()->getLocale()]);
     }
 }
