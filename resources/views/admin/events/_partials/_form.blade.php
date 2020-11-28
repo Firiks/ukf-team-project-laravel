@@ -31,7 +31,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group">
                     <label>Kategória</label>
                     <select name="event_category_id" class="form-control">
@@ -43,46 +43,55 @@
                         @endforeach
                     </select>
                     @include('admin._partials._errors', ['column' => 'event_category_id'])
-
-                    </select>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Fakulta</label>
-                        <select name="event_faculty_id" class="form-control">
-                            <option value="">Vyberte fakultu</option>
-                            @foreach($faculties as $faculty)
-                                <option value="{{ $faculty->id }}" {{ old('event_faculty_id') == $faculty->id ? 'selected' : (isset($event) && $event->event_faculty_id == $faculty->id ? 'selected' : '') }}>
-                                    {{ $faculty->name_sk }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @include('admin._partials._errors', ['column' => 'event_faculty_id'])
-
-                        </select>
-                    </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Fakulta</label>
+                    <select name="faculty_id" class="form-control">
+                        <option value="">Vyberte fakultu</option>
+                        @foreach($faculties as $faculty)
+                            <option value="{{ $faculty->id }}" {{ old('faculty_id') == $faculty->id ? 'selected' : (isset($event) && $event->faculty_id == $faculty->id ? 'selected' : '') }}>
+                                {{ $faculty->name_sk }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @include('admin._partials._errors', ['column' => 'faculty_id'])
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Učebna</label>
-                            <select name="event_room_id" class="form-control">
-                                <option value="">Vyberte učebňu</option>
-                                @foreach($rooms as $room)
-                                    <option value="{{ $room->id }}" {{ old('event_room_id') == $room->id ? 'selected' : (isset($event) && $event->event_room_id == $room->id ? 'selected' : '') }}>
-                                        {{ $room->name_sk }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @include('admin._partials._errors', ['column' => 'event_room_id'])
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Pracovisko</label>
+                    <select name="workplace_id" class="form-control">
+                        <option value="">Vyberte pracovisko</option>
+                        @foreach($workplaces as $workplace)
+                            <option value="{{ $workplace->id }}" {{ old('workplace_id') == $workplace->id ? 'selected' : (isset($event) && $event->workplace_id == $workplace->id ? 'selected' : '') }}>
+                                {{ $workplace->name_sk }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @include('admin._partials._errors', ['column' => 'workplace_id'])
+                </div>
+            </div>
+        </div>
 
-                            </select>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Učebna</label>
+                    <select name="room_id" class="form-control">
+                        <option value="">Vyberte učebňu</option>
+                        @foreach($rooms as $room)
+                            <option value="{{ $room->id }}" {{ old('room_id') == $room->id ? 'selected' : (isset($event) && $event->room_id == $room->id ? 'selected' : '') }}>
+                                {{ $room->name_sk }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @include('admin._partials._errors', ['column' => 'room_id'])
+                </div>
+            </div>
 
             <div class="col-sm-6">
                 <div class="form-group">

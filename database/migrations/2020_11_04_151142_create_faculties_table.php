@@ -19,6 +19,7 @@ class CreateFacultiesTable extends Migration
             $table->string('slug_sk', 255)->nullable();
             $table->string('name_en', 255);
             $table->string('slug_en', 255)->nullable();
+            $table->timestamps();
         });
     }
 

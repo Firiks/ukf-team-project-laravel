@@ -1,30 +1,61 @@
 @extends('layout.frontend')
 
 @section('content')
-    <section class="page-title-section2 bg-img cover-background" data-overlay-dark="7" data-background="img/bg/bg9.jpg">
+
+    <section class="blogs">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>{{$event->name}}</h1>
-                </div>
-                <div class="col-md-12">
-                    <ul>
-                        <li>
-                            <a href="{{ route('web.home', app()->getLocale()) }}">
-                                {{ __('Home') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('web.events', app()->getLocale()) }}">
-                                {{ __('Events') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                {{$event->name}}
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-lg-12 col-md-12 padding-30px-right xs-padding-15px-right sm-margin-30px-bottom">
+                    <div class="posts">
+                        <div class="post">
+                            <div class="content">
+                                @foreach($event->images->chunk(1) as $images)
+                                    @foreach($images as $image)
+                                        <div class="post-img">
+                                            <img alt="{{$event->name}}" src="{{ asset($event->get_thumb($image->image)) }}">
+                                        </div>
+                                    @endforeach
+                                @endforeach
+                                <div class="post-meta">
+                                    <div class="post-title">
+                                        <h5>{{$event->name}}</h5>
+                                    </div>
+                                    <ul class="meta">
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-bars" aria-hidden="true"></i> <b>{{$event->event_category->name}}</b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-building" aria-hidden="true"></i> <b>{{$event->faculty->name}}</b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-graduation-cap" aria-hidden="true"></i> <b>{{$event->workplace->name}}</b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-cube" aria-hidden="true"></i> <b>{{$event->room->name}}</b>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> <b>{{$event->date}}</b>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="post-cont">
+                                    <i class="fas fa-comments" aria-hidden="true"></i>
+                                    <b>{!! $event->description !!}</b>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,40 +79,4 @@
             </ul>
         </div>
     </div>
-
-    <section class="blogs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 padding-30px-right xs-padding-15px-right sm-margin-30px-bottom">
-                    <div class="posts">
-                        <div class="post">
-                            <div class="content">
-                                <div class="post-meta">
-                                    <div class="post-title">
-                                        <h5>{{$event->name}}</h5>
-                                    </div>
-                                    <ul class="meta">
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <i class="fa fa-folder-open" aria-hidden="true"></i> {{$event->event_category->name}}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> {{$event->date}}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="post-cont">
-                                    {!! $event->description !!}
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection

@@ -9,13 +9,23 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Názov {{ strtoupper($key) }}</label>
-                                <input name="name_{{ $key }}" type="text" value="{{ old("name_$key", isset($workplace) ? $workplace->{"name_$key"} : '') }}" class="form-control {{ $errors->has("name_$key") ? 'parsley-error' : '' }}">
+                                <input name="name_{{ $key }}" type="text" value="{{ old("name_$key", isset($room) ? $room->{"name_$key"} : '') }}" class="form-control {{ $errors->has("name_$key") ? 'parsley-error' : '' }}">
                                 @include('admin._partials._errors', ['column' => "name_$key"])
                             </div>
                         </div>
 
                     </div>
 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Popis {{ strtoupper($key) }}</label>
+                                <textarea name="description_{{ $key }}" class="form-control {{ $errors->has("description_$key") ? 'parsley-error' : '' }}">{{ old("description_$key", isset($room) ? $room->{"description_$key"} : '') }}</textarea>
+                                <script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+                                @include('admin._partials._errors', ['column' => "description_$key"])
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>

@@ -20,6 +20,10 @@ class Workplace extends BaseModel
         return $this->belongsTo('App\Faculty');
     }
 
+    public function events(){
+        return $this->hasMany('App\Event');
+    }
+
     public function getNameAttribute(){
         return $this->_translateProperty('name');
     }

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Event;
+use App\Faculty;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\EventCategory;
+use App\Room;
 use App\Traits\UploadTrait;
+use App\Workplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,14 +20,20 @@ class EventsController extends AdminController
     public function index(){
         $events = Event::orderBy('created_at', 'desc')->get();
         $categories = EventCategory::all();
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('admin.events.index', compact('events','categories'));
+        return view('admin.events.index', compact('events','categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function create(){
         $categories = EventCategory::all();
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('admin.events.create', compact('categories'));
+        return view('admin.events.create', compact('categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function store(CreateEventRequest $request){
@@ -67,8 +76,11 @@ class EventsController extends AdminController
     public function edit($id){
         $event = Event::findOrFail($id);
         $categories = EventCategory::all();
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('admin.events.edit', compact('event', 'categories'));
+        return view('admin.events.edit', compact('event', 'categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function update(UpdateEventRequest $request, $id){

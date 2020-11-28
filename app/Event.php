@@ -11,8 +11,11 @@ class Event extends BaseModel
         'name_en',
         'slug_en',
         'description_en',
-        'date',
         'event_category_id',
+        'faculty_id',
+        'workplace_id',
+        'room_id',
+        'date'
     ];
 
     public function images(){
@@ -25,6 +28,18 @@ class Event extends BaseModel
 
     public function event_category(){
         return $this->belongsTo('App\EventCategory');
+    }
+
+    public function faculty(){
+        return $this->belongsTo('App\Faculty');
+    }
+
+    public function workplace(){
+        return $this->belongsTo('App\Workplace');
+    }
+
+    public function room(){
+        return $this->belongsTo('App\Room');
     }
 
     public function getNameAttribute(){

@@ -21,9 +21,15 @@ class CreateEventsTable extends Migration
             $table->string('name_en', 255);
             $table->string('slug_en', 255)->nullable();
             $table->text('description_en', 255)->nullable();
-            $table->dateTime('date')->nullable();
             $table->bigInteger('event_category_id')->unsigned()->nullable();
             $table->foreign('event_category_id')->references('id')->on('event_categories')->onDelete('set null')->onUpdate('set null');
+            $table->bigInteger('faculty_id')->unsigned()->nullable();
+            $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null')->onUpdate('set null');
+            $table->bigInteger('workplace_id')->unsigned()->nullable();
+            $table->foreign('workplace_id')->references('id')->on('workplaces')->onDelete('set null')->onUpdate('set null');
+            $table->bigInteger('room_id')->unsigned()->nullable();
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('set null')->onUpdate('set null');
+            $table->dateTime('date')->nullable();
             $table->timestamps();
         });
     }

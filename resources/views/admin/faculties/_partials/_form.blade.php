@@ -9,7 +9,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Názov {{ strtoupper($key) }}</label>
-                                <input name="name_{{ $key }}" type="text" value="{{ old("name_$key", isset($event_faculty) ? $event_faculty->{"name_$key"} : '') }}" class="form-control {{ $errors->has("name_$key") ? 'parsley-error' : '' }}">
+                                <input name="name_{{ $key }}" type="text" value="{{ old("name_$key", isset($faculty) ? $faculty->{"name_$key"} : '') }}" class="form-control {{ $errors->has("name_$key") ? 'parsley-error' : '' }}">
                                 @include('admin._partials._errors', ['column' => "name_$key"])
                             </div>
                         </div>

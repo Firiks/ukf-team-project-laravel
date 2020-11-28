@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Faculty extends Model
+class Faculty extends BaseModel
 {
     protected $fillable = [
         'name_sk',
@@ -15,6 +15,10 @@ class Faculty extends Model
 
     public function workplaces(){
         return $this->hasMany('App\Workplace');
+    }
+
+    public function events(){
+        return $this->hasMany('App\Event');
     }
 
     public function getNameAttribute(){

@@ -33,12 +33,12 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-map-marker"></i>
-                        <span>Pracoviská<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
+                        <span>Fakulty<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a href="{{ route('workplaces.index') }}">
-                                Pracoviská
+                            <a href="{{ route('faculties.index') }}">
+                                Fakulty
                             </a>
                         </li>
                     </ul>
@@ -47,12 +47,12 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect">
                         <i class="mdi mdi-school"></i>
-                        <span>Fakulty<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
+                        <span>Pracoviska<span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span>
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a href="{{ route('faculties.index') }}">
-                                Fakulty
+                            <a href="{{ route('workplaces.index') }}">
+                                Pracoviska
                             </a>
                         </li>
                     </ul>
