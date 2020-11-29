@@ -88,12 +88,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="rozhranie" class="col-md-4 col-form-label text-md-right">Čo ste?</label>
+                            <label for="rozhranie" class="col-md-4 col-form-label text-md-right">{{__('Position')}}</label>
 
                             <div class="col-md-6">
                                 <select class="form-control" id="rozhranie" name="rozhranie">
-                                    <option value="1">Študent</option>
-                                    <option value="2">Pracovník</option>
+                                    <option value="1">{{__('Student')}}</option>
+                                    <option value="2">{{__('Employee')}}</option>
                                 </select>
                             </div>
                         </div>
