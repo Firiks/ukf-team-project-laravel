@@ -2,6 +2,8 @@
     <div class="col-sm-12 col-md-9">
         @include('admin._partials._lang_tabs')
 
+        <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
+
         <div class="tab-content mb-4">
             @foreach(config('settings.languages') as $key => $lang)
                 <div class="tab-pane p-3 {{ $loop->first ? 'active' : '' }}" id="{{ $key }}" role="tabpanel">

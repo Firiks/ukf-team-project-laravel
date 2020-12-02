@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Pracovnik;
 
 use App\Event;
 use App\EventCategory;
+use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Room;
 use App\Workplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -33,8 +35,11 @@ class PracovnikController extends Controller
 
     public function pracovnikEventCreate(){
         $categories = EventCategory::all();
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('frontend.pracovnik.events.create', compact('categories'));
+        return view('frontend.pracovnik.events.create', compact('categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function pracovnikEventStore(CreateEventRequest $request){

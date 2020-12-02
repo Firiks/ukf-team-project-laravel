@@ -10,6 +10,7 @@ class Event extends BaseModel
         'description_sk',
         'name_en',
         'slug_en',
+        'user_id',
         'description_en',
         'event_category_id',
         'faculty_id',
@@ -28,6 +29,10 @@ class Event extends BaseModel
 
     public function event_category(){
         return $this->belongsTo('App\EventCategory');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 
     public function faculty(){
