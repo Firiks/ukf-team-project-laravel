@@ -31,7 +31,7 @@ class Event extends BaseModel
         return $this->belongsTo('App\EventCategory');
     }
 
-    public function user(){
+    public function author(){
         return $this->belongsTo('App\User');
     }
 
