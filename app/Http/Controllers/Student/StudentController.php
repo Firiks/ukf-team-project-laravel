@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Event;
 use App\EventCategory;
+use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Room;
 use App\Workplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,8 +17,10 @@ class StudentController extends Controller
 {
     use UploadTrait;
 
-    public function index(){
-        return view('frontend.student.index');
+    public function index(Request $request){
+        $user = $request->user()->id;
+        $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
+        return view('frontend.student.index',  compact('events'));
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -32,9 +36,12 @@ class StudentController extends Controller
     }
 
     public function studentEventCreate(){
+        $faculties = Faculty::all();
         $categories = EventCategory::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('frontend.student.events.create', compact('categories'));
+        return view('frontend.student.events.create', compact('categories','faculties', 'workplaces', 'rooms'));
     }
 
     public function studentEventStore(CreateEventRequest $request){

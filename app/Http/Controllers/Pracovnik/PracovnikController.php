@@ -15,8 +15,10 @@ class PracovnikController extends Controller
 {
     use UploadTrait;
 
-    public function index(){
-        return view('frontend.pracovnik.index');
+    public function index(Request $request){
+        $user = $request->user()->id;
+        $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
+        return view('frontend.pracovnik.index',  compact('events'));
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
