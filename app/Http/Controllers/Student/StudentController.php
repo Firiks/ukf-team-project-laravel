@@ -21,8 +21,10 @@ class StudentController extends Controller
 {
     use UploadTrait;
 
-    public function index(){
-        return view('frontend.student.index');
+    public function index(Request $request){
+        $user = $request->user()->id;
+        $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
+        return view('frontend.student.index',  compact('events'));
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -38,6 +40,7 @@ class StudentController extends Controller
     }
 
     public function studentEventCreate(){
+        $faculties = Faculty::all();
         $categories = EventCategory::all();
         $faculties = Faculty::all();
         $workplaces = Workplace::all();
