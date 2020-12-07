@@ -9,6 +9,7 @@ class Workplace extends BaseModel
         'name_en',
         'slug_sk',
         'slug_en',
+        'code',
         'faculty_id'
     ];
 

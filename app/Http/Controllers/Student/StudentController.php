@@ -6,7 +6,7 @@ use App\Event;
 use App\EventCategory;
 use App\Faculty;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateEventRequest
+use App\Http\Requests\CreateEventRequest;
 use App\Mail\CodeMail;
 use App\Mail\TestMail;
 use App\Room;
