@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Pracovnik;
 
 use App\Event;
 use App\EventCategory;
+use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Mail\CodeMail;
+use App\Room;
 use App\Workplace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 
@@ -35,8 +39,11 @@ class PracovnikController extends Controller
 
     public function pracovnikEventCreate(){
         $categories = EventCategory::all();
+        $faculties = Faculty::all();
+        $workplaces = Workplace::all();
+        $rooms = Room::all();
 
-        return view('frontend.pracovnik.events.create', compact('categories'));
+        return view('frontend.pracovnik.events.create', compact('categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function pracovnikEventStore(CreateEventRequest $request){
@@ -81,8 +88,17 @@ class PracovnikController extends Controller
         return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
     }
 
-    public function pracovnikWorkplaceSave($id) {
-        // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
-        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
+    public function pracovnikWorkplacesRequest(Request $request, $language, $id) {
+        $workplace = Workplace::findOrFail($id);
+        $kod = Str::random(6);
+
+
+        $data = ['message' => $kod];
+        Mail::to($request->user()->email)->send(new CodeMail($data));
+
+        return view('frontend.pracovnik.workplaces.request', compact('workplace', 'language', 'kod'));
+    }
+    public function pracovnikWorkplacesRequestStore() {
+        return "TU NEVIEM AKO OVERIT KOD...";
     }
 }
