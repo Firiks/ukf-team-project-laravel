@@ -21,6 +21,8 @@ class CreateEventsTable extends Migration
             $table->string('name_en', 255);
             $table->string('slug_en', 255)->nullable();
             $table->text('description_en', 255)->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('set null');
             $table->bigInteger('event_category_id')->unsigned()->nullable();
             $table->foreign('event_category_id')->references('id')->on('event_categories')->onDelete('set null')->onUpdate('set null');
             $table->bigInteger('faculty_id')->unsigned()->nullable();

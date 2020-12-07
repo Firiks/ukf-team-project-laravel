@@ -52,6 +52,8 @@ class StudentController extends Controller
     public function studentEventStore(CreateEventRequest $request){
         $event = Event::create($request->all());
 
+        $event->{"user_id"} = $request->user()->id;
+
         // GENERATE SLUGs
         foreach(config('settings.languages') as $key => $value){
             $slug = Str::slug($event->{"name_$key"});

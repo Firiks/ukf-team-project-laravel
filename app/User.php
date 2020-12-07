@@ -53,6 +53,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Workplace');
     }
 
+    public function events(){
+        return $this->hasMany('App\Event');
+    }
+
     public function get_image($image){
         $path = 'data/users/' . $this->id . '/';
         $image_path = $path . $image;
