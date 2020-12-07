@@ -6,19 +6,25 @@ use App\Event;
 use App\EventCategory;
 use App\Faculty;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\CreateEventRequest
+use App\Mail\CodeMail;
+use App\Mail\TestMail;
 use App\Room;
 use App\Workplace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
+use App\Mail\ContactMail;
 
 class StudentController extends Controller
 {
     use UploadTrait;
 
-    public function index(){
-        return view('frontend.student.index');
+    public function index(Request $request){
+        $user = $request->user()->id;
+        $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
+        return view('frontend.student.index',  compact('events'));
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -34,6 +40,7 @@ class StudentController extends Controller
     }
 
     public function studentEventCreate(){
+        $faculties = Faculty::all();
         $categories = EventCategory::all();
         $faculties = Faculty::all();
         $workplaces = Workplace::all();
@@ -85,8 +92,17 @@ class StudentController extends Controller
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
         return view('frontend.student.workplaces.index', compact('workplaces'));
     }
-    public function studentWorkplacesSave($id) {
-        // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
-        return redirect()->route('student.workplaces', ['language' => app()->getLocale()]);
+    public function studentWorkplacesRequest(Request $request, $language, $id) {
+        $workplace = Workplace::findOrFail($id);
+        $kod = Str::random(6);
+
+
+        $data = ['message' => $kod];
+        Mail::to($request->user()->email)->send(new CodeMail($data));
+
+        return view('frontend.student.workplaces.request', compact('workplace', 'language', 'kod'));
+    }
+    public function studentWorkplacesRequestStore() {
+        return "TU NEVIEM AKO OVERIT KOD...";
     }
 }

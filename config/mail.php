@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'matejmozola1@gmail.com',
-        'name' => 'Matej Mozola',
+        'address' => 'teamproject2@ukf.sk',
+        'name' => 'Tímový projekt 2',
     ],
 
     /*
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'matejmozola1@gmail.com'),
+    'username' => env('MAIL_USERNAME', 'teamproject2@ukf.sk'),
 
     'password' => env('MAIL_PASSWORD', "xdeafxzgzfmxuwtm"),
 

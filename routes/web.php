@@ -105,7 +105,8 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/udalosti/create", ['as' => "student.events.create", 'uses' => 'StudentController@studentEventCreate']);
         Route::post('/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
         Route::get("/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
-        Route::get('/pracoviska/save/{id}', ['as' => 'student.workplaces.save', 'uses' => 'StudentController@studentWorkplacesSave']);
+        Route::get('/pracoviska/request/{id}', ['as' => 'student.workplaces.request', 'uses' => 'StudentController@studentWorkplacesRequest']);
+        Route::post('/pracoviska', ['as' => 'student.workplaces.request.store', 'uses' => 'StudentController@studentWorkplacesRequestStore']);
     });
 
     // Pracovnik
@@ -115,6 +116,7 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/udalosti/create", ['as' => "pracovnik.events.create", 'uses' => 'PracovnikController@pracovnikEventCreate']);
         Route::post('/udalosti', ['as' => 'pracovnik.events.store', 'uses' => 'PracovnikController@pracovnikEventStore']);
         Route::get("/pracoviska", ['as' => "pracovnik.workplaces", 'uses' => 'PracovnikController@pracovnikWorkplaces']);
-        Route::get('/pracoviska/save/{id}', ['as' => 'pracovnik.workplaces.save', 'uses' => 'PracovnikController@pracovnikWorkplaceSave']);
+        Route::get('/pracoviska/request/{id}', ['as' => 'pracovnik.workplaces.request', 'uses' => 'PracovnikController@pracovnikWorkplacesRequest']);
+        Route::post('/pracoviska', ['as' => 'pracovnik.workplaces.request.store', 'uses' => 'PracovnikController@pracovnikWorkplacesRequestStore']);
     });
 });
