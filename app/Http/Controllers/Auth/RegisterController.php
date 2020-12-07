@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\IsAllowedDomain;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +30,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    public function redirectTo() {
+        if (Auth::user()->admin == 1) {
+            return '/admin';
+        } elseif (Auth::user()->student == 1) {
+            return route('web.student', 'sk');
+        } elseif (Auth::user()->pracovnik == 1) {
+            return route('web.pracovnik', 'sk');
+        } else {
+            return '/sk';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -51,7 +63,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', new IsAllowedDomain],
             'password' => ['required', 'min:8', 'confirmed']
         ]);
     }
