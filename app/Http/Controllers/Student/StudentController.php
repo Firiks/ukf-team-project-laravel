@@ -18,7 +18,7 @@ class StudentController extends Controller
     use UploadTrait;
 
     public function index(){
-        return view('frontend.student.index');
+        return view('frontend.student.settings');
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){

@@ -18,7 +18,7 @@ class PracovnikController extends Controller
     use UploadTrait;
 
     public function index(){
-        return view('frontend.pracovnik.index');
+        return view('frontend.pracovnik.settings');
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
