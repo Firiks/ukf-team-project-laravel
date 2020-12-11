@@ -101,6 +101,24 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Počet účastníkov</label>
+                    <input name="participants_max" type="text" value="{{ old("participants_max", isset($event) ? $event->{"participants_max"} : '') }}" class="form-control {{ $errors->has("participants_max") ? 'parsley-error' : '' }}">
+                    @include('admin._partials._errors', ['column' => "participants_max"])
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Verejná</label>
+                    <div class="form-group">
+                        <input name="public" type="range" id="public" min="0" max="1" class="form-control-range w-30" value="{{ old("public", isset($event) ? $event->{"public"} : '') }} {{ $errors->has("public") ? 'parsley-error' : '' }}">
+                        @include('admin._partials._errors', ['column' => "public"])
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-sm-6">
