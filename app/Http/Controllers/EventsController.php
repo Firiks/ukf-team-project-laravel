@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\EventCategory;
+use App\User;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -23,7 +24,7 @@ class EventsController extends Controller
 
     public function show($language, $slug){
         $event = Event::where("slug_" . $language ,$slug)->firstOrFail();
-
-        return view('frontend.events.show', compact('event'));
+        $users = User::all();
+        return view('frontend.events.show', compact('event', 'users'));
     }
 }
