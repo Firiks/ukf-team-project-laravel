@@ -10,14 +10,18 @@ use App\EventCategory;
 use Carbon\Carbon;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
 {
     public function index(){
-        $events = Event::orderBy('date', 'asc')->get();
-
+        if(Auth::user()) {
+            $events = Event::orderBy('date', 'asc')->get();
+        } else {
+            $events = Event::where('public', 1)->orderBy('date', 'asc')->get();
+        }
         return view('frontend.pages.index', compact( 'events'));
     }
 
