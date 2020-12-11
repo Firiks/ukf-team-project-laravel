@@ -22,7 +22,13 @@ class PagesController extends Controller
         } else {
             $events = Event::where('public', 1)->orderBy('date', 'asc')->get();
         }
-        return view('frontend.pages.index', compact( 'events'));
+
+        if(Auth::user()) {
+            $top_events = Event::orderBy('participants', 'desc')->get();
+        } else {
+            $top_events = Event::where('public', 1)->orderBy('participants', 'desc')->get();
+        }
+        return view('frontend.pages.index', compact( 'events', 'top_events'));
     }
 
     public function contact(){
