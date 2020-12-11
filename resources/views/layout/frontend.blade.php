@@ -40,7 +40,7 @@
 </div>
 
 @include('frontend._partials._scrolltop')
-
+@include('frontend.events._partials._share_modal')
 <!-- SCRIPTS -->
 <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/modernizr.js') }}" type="text/javascript"></script>
