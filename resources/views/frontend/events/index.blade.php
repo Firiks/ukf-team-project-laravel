@@ -28,6 +28,26 @@
                             </ul>
                         </div>
                     </div>
+                    <br>
+                    <div class="side-bar">
+                        <div class="widget">
+                            <div class="widget-title">
+                                <h6>{{__('Workplaces')}}</h6>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('web.events', app()->getLocale()) }}">{{__('All workplaces')}}</a>
+                                </li>
+                                @foreach($workplaces as $workplace)
+                                    <li>
+                                        <a href="{{ route('web.events', ['language' => app()->getLocale(), 'workplace_id' => $workplace->id]) }}" class="{{ request('workplace_id') == $workplace->id ? 'active-filter' : '' }}">
+                                            {{$workplace->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-9 col-md-12 padding-30px-right xs-padding-15px-right sm-margin-30px-bottom">
