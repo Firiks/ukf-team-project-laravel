@@ -7,6 +7,7 @@
     "_Home": "",
     "University of Konstantine the Philosopher Event Calendar": "Kalendár udalostí Univerzity Konštantína Filozofa",
     "Upcoming events": "Nadchádzajúce udalosti",
+    "Top events": "Top udalosti",
     "View": "Zobraziť",
 
     "_Contact": "",
@@ -41,7 +42,9 @@
     "_Events": "",
     "Event filter" : "Filtrovanie udalostí",
     "Categories": "Kategórie",
+    "Workplaces": "Pracoviska",
     "All categories": "Všetky kategórie",
+    "All workplaces": "Všetky pracoviska",
 
     "_Auth": "",
     "Login": "Prihlásenie",

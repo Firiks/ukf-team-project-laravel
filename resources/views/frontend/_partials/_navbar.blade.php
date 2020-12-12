@@ -99,7 +99,12 @@
                                     {{app()->getLocale()}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if( isset($event) )
+                                    @if( isset($workplace) )
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'sk', 'id' => $workplace->id])}}"
+                                           class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
+                                        <a href="{{route(Route::currentRouteName(), ['language' => 'en', 'id' => $workplace->id])}}"
+                                           class="{{ app()->getLocale() == 'en' ? 'current' : '' }} dropdown-item">EN</a>
+                                    @elseif( isset($event) )
                                         <a href="{{route(Route::currentRouteName(), ['language' => 'sk', 'slug' => $event->slug_sk])}}"
                                            class="{{ app()->getLocale() == 'sk' ? 'current' : '' }} dropdown-item">SK</a>
                                         <a href="{{route(Route::currentRouteName(), ['language' => 'en', 'slug' => $event->slug_en])}}"

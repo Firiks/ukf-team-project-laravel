@@ -19,7 +19,7 @@ services:
     networks:
       - laravel-tp
   mysql:
-    image: mysql:5.7.30
+    image: mysql:5.7
     container_name: db
     restart: unless-stopped
     tty: true
@@ -47,5 +47,20 @@ services:
       - .:/var/www/html
     ports:
       - "9000:9000"
+    networks:
+      - laravel-tp
+  pma:
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+      - php
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: mysql
+      MYSQL_USERNAME: laravel
+      MYSQL_ROOT_PASSWORD: password
     networks:
       - laravel-tp

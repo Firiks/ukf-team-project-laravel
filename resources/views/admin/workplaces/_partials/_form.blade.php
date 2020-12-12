@@ -33,8 +33,16 @@
                             @include('admin._partials._errors', ['column' => 'workplace_id'])
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Kód</label>
+                            <input name="code" type="text" value="{{ old('code', isset($workplace) ? $workplace->code : mt_rand(100000, 999999)) }}" class="form-control {{ $errors->has('code') ? 'parsley-error' : '' }}" readonly>
+                            @include('admin._partials._errors', ['column' => 'code'])
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>

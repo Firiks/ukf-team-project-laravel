@@ -19,6 +19,7 @@ class CreateWorkplacesTable extends Migration
             $table->string('slug_sk', 255)->nullable();
             $table->string('name_en', 255);
             $table->string('slug_en', 255)->nullable();
+            $table->string('code', 6)->nullable();
             $table->bigInteger('faculty_id')->unsigned()->nullable();
             $table->foreign('faculty_id')->references('id')->on('faculties')->onDelete('set null')->onUpdate('set null');
             $table->timestamps();

@@ -46,6 +46,19 @@
                                                 <i class="fas fa-calendar-alt" aria-hidden="true"></i> <b>{{$event->date}}</b>
                                             </a>
                                         </li>
+                                        @if ($event->user_id != null)
+                                            @foreach($users as $user)
+                                                @if( $event->user_id == $user->id )
+                                                    @if( $user->admin == 0 )
+                                                        <li>
+                                                            <a href="javascript:void(0);">
+                                                                <i class="fas fa-user" aria-hidden="true"></i> <b>{{$user->name}}</b>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="post-cont">

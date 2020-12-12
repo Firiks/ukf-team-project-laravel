@@ -7,9 +7,11 @@ use App\EventCategory;
 use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Mail\CodeMail;
 use App\Room;
 use App\Workplace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 
@@ -17,8 +19,14 @@ class PracovnikController extends Controller
 {
     use UploadTrait;
 
-    public function index(){
-        return view('frontend.pracovnik.settings');
+    public function index(Request $request){
+        $user = $request->user()->id;
+        $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
+        return view('frontend.pracovnik.index',  compact('events'));
+    }
+  
+    public function settings(){
+        return view('frontend.pracovnik.settings);
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -37,13 +45,15 @@ class PracovnikController extends Controller
         $categories = EventCategory::all();
         $faculties = Faculty::all();
         $workplaces = Workplace::all();
-        $rooms= Room::all();
+        $rooms = Room::all();
 
-        return view('frontend.pracovnik.events.create', compact('categories','faculties','workplaces','rooms'));
+        return view('frontend.pracovnik.events.create', compact('categories', 'faculties', 'workplaces', 'rooms'));
     }
 
     public function pracovnikEventStore(CreateEventRequest $request){
         $event = Event::create($request->all());
+
+        $event->{"user_id"} = $request->user()->id;
 
         // GENERATE SLUGs
         foreach(config('settings.languages') as $key => $value){
@@ -84,8 +94,17 @@ class PracovnikController extends Controller
         return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
     }
 
-    public function pracovnikWorkplaceSave($id) {
-        // TU PRIDAT SAVE ALEBO ZE POZIADAL ZIADOST O PRIDANIE...
-        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
+    public function pracovnikWorkplacesRequest(Request $request, $language, $id) {
+        $workplace = Workplace::findOrFail($id);
+        $kod = Str::random(6);
+
+
+        $data = ['message' => $kod];
+        Mail::to($request->user()->email)->send(new CodeMail($data));
+
+        return view('frontend.pracovnik.workplaces.request', compact('workplace', 'language', 'kod'));
+    }
+    public function pracovnikWorkplacesRequestStore() {
+        return "TU NEVIEM AKO OVERIT KOD...";
     }
 }

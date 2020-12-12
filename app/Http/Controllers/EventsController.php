@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\EventCategory;
+use App\User;
+use App\Workplace;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -14,16 +16,21 @@ class EventsController extends Controller
         if($category = $request->event_category_id){
             $events = $events->where('event_category_id', $category);
         }
+        if($workplace = $request->workplace_id){
+            $events = $events->where('workplace_id', $workplace);
+        }
 
         $events = $events->paginate(8);
-        $categories = EventCategory::orderBy('created_at', 'desc')->get();
 
-        return view('frontend.events.index' ,compact('events','categories'));
+        $categories = EventCategory::orderBy('created_at', 'desc')->get();
+        $workplaces = Workplace::orderBy('created_at', 'desc')->get();
+
+        return view('frontend.events.index' ,compact('events','categories', 'workplaces'));
     }
 
     public function show($language, $slug){
         $event = Event::where("slug_" . $language ,$slug)->firstOrFail();
-
-        return view('frontend.events.show', compact('event'));
+        $users = User::all();
+        return view('frontend.events.show', compact('event', 'users'));
     }
 }
