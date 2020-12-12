@@ -26,6 +26,10 @@ class StudentController extends Controller
         $events = Event::where('user_id', $user)->orderBy('date', 'asc')->get();
         return view('frontend.student.index',  compact('events'));
     }
+  
+    public function settings(){
+        return view('frontend.student.settings);
+    }
 
     protected function _setFlashMessage(Request $request, $type, $message){
         $request->session()->flash('type', $type);

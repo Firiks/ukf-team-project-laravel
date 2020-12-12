@@ -1,5 +1,20 @@
 @extends('layout.frontend')
 
+@section('js')
+    <script type="text/javascript">
+    // SHARE MODAL
+    $(function(){
+        var form;
+        $(document).on("click", ".share-button", function(){
+            $('.share-name').text($(this).data('entity'));
+            form = $(this).parent();
+
+            $('.modal-share').modal();
+        });
+    });
+    </script>
+
+@endsection
 @section('content')
 
     <section class="blogs">
@@ -52,6 +67,19 @@
                                                 <b>{{$event->date}}</b>
                                             </a>
                                         </li>
+                                        @if ($event->user_id != null)
+                                            @foreach($users as $user)
+                                                @if( $event->user_id == $user->id )
+                                                    @if( $user->admin == 0 )
+                                                        <li>
+                                                            <a href="javascript:void(0);">
+                                                                <i class="fas fa-user" aria-hidden="true"></i> <b>{{$user->name}}</b>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="post-cont">
@@ -74,6 +102,13 @@
                                 @endguest
                                         </div>
 
+
+                                <div class="text-right">
+                                    <button data-entity="{{ 'Udalosť - ' . $event->name_sk }}" class="share-button btn btn-primary text-white" type="button">
+                                        <i class="fa fa-share"></i> Zdieľať udalosť
+                                    </button>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
