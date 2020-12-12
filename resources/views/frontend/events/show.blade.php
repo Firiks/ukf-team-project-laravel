@@ -1,5 +1,20 @@
 @extends('layout.frontend')
 
+@section('js')
+    <script type="text/javascript">
+    // SHARE MODAL
+    $(function(){
+        var form;
+        $(document).on("click", ".share-button", function(){
+            $('.share-name').text($(this).data('entity'));
+            form = $(this).parent();
+
+            $('.modal-share').modal();
+        });
+    });
+    </script>
+
+@endsection
 @section('content')
 
     <section class="blogs">
@@ -64,6 +79,12 @@
                                 <div class="post-cont">
                                     <i class="fas fa-comments" aria-hidden="true"></i>
                                     <b>{!! $event->description !!}</b>
+                                </div>
+                                    <br>
+                                <div class="text-right">
+                                    <button data-entity="{{ 'Udalosť - ' . $event->name_sk }}" class="share-button btn btn-primary text-white" type="button">
+                                        <i class="fa fa-share"></i> Zdieľať udalosť
+                                    </button>
                                 </div>
                             </div>
 
