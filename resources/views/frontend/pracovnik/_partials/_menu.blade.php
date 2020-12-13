@@ -11,19 +11,13 @@
 
                             <li class="{{ request()->route()->getName() == 'pracovnik.events' || request()->route()->getName() == 'pracovnik.events' ? 'current' : '' }}">
                                 <a href="{{route('pracovnik.events', app()->getLocale())}}" class="nav-item nav-link">
-                                    Pridať udalosť
+                                    {{__('Events')}}
                                 </a>
                             </li>
 
                             <li class="{{ request()->route()->getName() == 'pracovnik.workplaces' ? 'current' : '' }}">
                                 <a href="{{route('pracovnik.workplaces', app()->getLocale())}}" class="nav-item nav-link">
-                                    Pracoviská
-                                </a>
-                            </li>
-
-                            <li class="{{ request()->route()->getName() == 'pracovnik.profile' ? 'current' : '' }}">
-                                <a href="{{route('pracovnik.profile', app()->getLocale())}}" class="nav-item nav-link">
-                                    Profil
+                                    {{__('Workplaces')}}
                                 </a>
                             </li>
 

@@ -33,4 +33,15 @@ class EventsController extends Controller
         $users = User::all();
         return view('frontend.events.show', compact('event', 'users'));
     }
+
+    public function attend($id){
+        $event = Event::findOrFail($id);
+        if ($event->participants_max == $event->participants){
+            $this->_setFlashMessage("Udalost je uz plna");
+        } else {
+            $event->participants = $event->participants + 1;
+            $this->setFlashMessage("Prihlasenia na udalost bolo uspesne");
+        }
+        return redirect()->route('web.event', ['language' => app()->getLocale(), 'slug' => $event->slug]);
+    }
 }

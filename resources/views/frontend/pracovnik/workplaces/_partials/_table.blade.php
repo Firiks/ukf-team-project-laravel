@@ -17,7 +17,7 @@
             <td>{{ $workplace->name_en }}</td>
             <td>
                 <div class="btn-group text-center">
-                    <a href="{{ route('pracovnik.workplaces.request', [app()->getLocale(), $workplace->id]) }}">
+                    <a href="{{ route('pracovnik.workplaces.request', ['language' => app()->getLocale(), 'id' => $workplace->id]) }}">
                         <button type="button" class="btn btn-success">
                             Pridať sa na pracovisko
                         </button>

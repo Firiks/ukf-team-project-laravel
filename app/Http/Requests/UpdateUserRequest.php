@@ -23,8 +23,6 @@ class UpdateUserRequest extends CreateUserRequest
     {
         $rules = parent::rules();
 
-        $rules['image'] = 'file|image';
-
         return $rules;
     }
 }

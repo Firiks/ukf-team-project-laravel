@@ -25,7 +25,6 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'image' => 'required|image|file'
         ];
     }
 }

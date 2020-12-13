@@ -31,30 +31,18 @@ class PracovnikController extends Controller
 
     public function settings($language){
         $user = Auth::user();
+
         return view('frontend.pracovnik.settings', compact('user', 'language'));
     }
 
     public function update(UpdateUserRequest $request){
-        $user = User::findOrFail($request->user()->id);
+        $user = Auth::user();
+        $user->update($request->all());
+        $user->fill(['password' => Hash::make($request->input('password'))]);
+        $user->save();
+        $this->_setFlashMessage($request, 'success', "Vaše údaje boli úspešne zmenené.");
 
-        if(strcmp($request->password_confirmation, $request->password)){
-            $user->update([
-                'username' => $request->username,
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-
-            $user->save();
-
-            $this->upload_image($request, 'image', 'users', $user);
-
-            $this->_setFlashMessage($request, 'success', "Profil bol úspešne zmenený.");
-        } else {
-            $this->_setFlashMessage($request, 'error', "Heslá sa nezhodujú.");
-        }
-
-        return redirect()->route('pracovnik.profile', ['language' => app()->getLocale() , 'user' => $user]);
+        return redirect()->route('web.pracovnik', app()->getLocale());
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){
@@ -119,20 +107,29 @@ class PracovnikController extends Controller
 
     public function pracovnikWorkplaces(){
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
+
         return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
     }
 
-    public function pracovnikWorkplacesRequest(Request $request, $language, $id) {
+    public function pracovnikWorkplacesRequest($language, $id) {
         $workplace = Workplace::findOrFail($id);
-        $kod = Str::random(6);
 
-
-        $data = ['message' => $kod];
-        Mail::to($request->user()->email)->send(new CodeMail($data));
-
-        return view('frontend.pracovnik.workplaces.request', compact('workplace', 'language', 'kod'));
+        return view('frontend.pracovnik.workplaces.request', compact('language', 'workplace'));
     }
-    public function pracovnikWorkplacesRequestStore() {
-        return "TU NEVIEM AKO OVERIT KOD...";
+
+    public function pracovnikWorkplacesRequestStore(Request $request, $id) {
+        $workplace = Workplace::findOrFail($id);
+        $user = Auth::user();
+        $rcode = $request->input("kod");
+        $wcode = $workplace->code;
+
+        if ($rcode == $wcode) {
+            $user->{"workplace_id"} = $workplace->id;
+            $user->save();
+            $this->_setFlashMessage($request,'success',"Priradenie na pracovisko prebehlo úspešne");
+        } else {
+            $this->_setFlashMessage($request,'error',"Zadaný kód sa nezhoduje s kódom pracoviska");
+        }
+        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
     }
 }

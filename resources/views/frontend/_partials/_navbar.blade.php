@@ -57,18 +57,26 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                        data-toggle="dropdown">
                                         <img src="{{ asset('img/user-image.png') }}" alt="user" class="rounded-circle" width="30">
-                                        {{ Auth::user()->email }}
+                                        {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @if (Auth::user()->student == 1)
                                             <a href="{{route('web.student', app()->getLocale())}}" class="dropdown-item">
                                                 <i class="fa fa-user"></i>
+                                                Profil
+                                            </a>
+                                            <a href="{{route('student.settings', app()->getLocale(), Auth::user()->id)}}" class="dropdown-item">
+                                                <i class="fa fa-cog"></i>
                                                 Nastavenia
                                             </a>
                                         @endif
                                             @if (Auth::user()->pracovnik == 1)
                                                 <a href="{{route('web.pracovnik', app()->getLocale())}}" class="dropdown-item">
                                                     <i class="fa fa-user"></i>
+                                                    Profil
+                                                </a>
+                                                <a href="{{route('pracovnik.settings', app()->getLocale(), Auth::user()->id)}}" class="dropdown-item">
+                                                    <i class="fa fa-cog"></i>
                                                     Nastavenia
                                                 </a>
                                             @endif

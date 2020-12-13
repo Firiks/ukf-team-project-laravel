@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Workplace;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends AdminController
 {
@@ -28,11 +29,9 @@ class UsersController extends AdminController
 
     public function store(CreateUserRequest $request){
         $user = User::create($request->all());
-
+        $user->fill(['password' => Hash::make($request->input('password'))]);
         $user->save();
-
         $this->upload_image($request, 'image', 'users', $user);
-
         $this->_setFlashMessage($request, 'success', "Užívateľ <b>$user->name</b> úspešne vytvorený.");
 
         return redirect()->route('users.index');
@@ -47,13 +46,10 @@ class UsersController extends AdminController
 
     public function update(UpdateUserRequest $request, $id){
         $user = User::findOrFail($id);
-
         $user->update($request->all());
-
+        $user->fill(['password' => Hash::make($request->input('password'))]);
         $user->save();
-
         $this->upload_image($request, 'image', 'users', $user);
-
         $this->_setFlashMessage($request, 'success', "Užívateľ <b>$user->name</b> bol úspešne zmenený.");
 
         return redirect()->route('users.index');

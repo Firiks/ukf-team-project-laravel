@@ -91,21 +91,24 @@
                                         <h6>Prihláste sa</h6>
                                     <input name="email" type="text" class="form-control" placeholder="Zadajte e-mail">
 
-                                            <button class="btn btn-info w-md waves-effect waves-light" type="submit">Prihlásiť sa</button>
+                                            <button class="butn medium" type="submit">
+                                                <span>Prihlásiť sa</span>
+                                            </button>
                                 @else
                                     @if(Auth::user())
 
-                                        <button type="submit" class="btn btn-success waves-effect waves-light">Zúčastním
-                                            sa!
+                                        <button type="submit" class="butn medium" formaction="{{ route('web.attend', $event->id) }}">
+                                            <span>Zúčastním sa!</span>
                                         </button>
                                     @endif
                                 @endguest
-                                        </div>
-
 
                                 <div class="text-right">
-                                    <button data-entity="{{ 'Udalosť - ' . $event->name_sk }}" class="share-button btn btn-primary text-white" type="button">
-                                        <i class="fa fa-share"></i> Zdieľať udalosť
+                                    <button data-entity="{{ 'Udalosť - ' . $event->name_sk }}" class="butn medium" type="button">
+                                        <span>
+                                            <i class="fa fa-share"></i>
+                                            Zdieľať udalosť
+                                        </span>
                                     </button>
                                 </div>
                             </div>

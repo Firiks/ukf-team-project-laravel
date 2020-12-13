@@ -34,7 +34,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Heslo</label>
-                                <input name="password" type="text" value="{{ old("password", isset($user) ? $user->{"password"} : '') }}" class="form-control {{ $errors->has("password") ? 'parsley-error' : '' }}">
+                                <input name="password" type="text" value="" class="form-control {{ $errors->has("password") ? 'parsley-error' : '' }}">
                                 @include('admin._partials._errors', ['column' => "password"])
                             </div>
                         </div>

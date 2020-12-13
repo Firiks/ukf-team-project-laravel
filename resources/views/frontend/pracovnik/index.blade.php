@@ -4,9 +4,9 @@
     <section class="bg-light-gray">
         <div class="container">
             <div class="text-center section-heading">
-                <h1>Pracovník rozhranie</h1>
+                <h1>Pracovnícke rozhranie</h1>
             </div>
-            <h6 class="text-center">Udalosti ktore ste Vy pridali:</h6>
+            <h6 class="text-center">Vaše udalosti</h6>
             <br>
             @foreach($events->chunk(3) as $items)
                 <div class="row">
