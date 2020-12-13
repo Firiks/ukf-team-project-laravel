@@ -45,6 +45,22 @@ class PracovnikController extends Controller
         return redirect()->route('web.pracovnik', app()->getLocale());
     }
 
+    public function workplace_store(Request $request) {
+        $workplace = Workplace::findOrFail($request->input("workplace_id"));
+        $user = Auth::user();
+        $rcode = $request->input("kod");
+        $wcode = $workplace->code;
+
+        if ($rcode == $wcode) {
+            $user->fill(['workplace_id' => $request->input("workplace_id")]);
+            $user->save();
+            $this->_setFlashMessage($request,'success',"Priradenie na pracovisko prebehlo úspešne");
+        } else {
+            $this->_setFlashMessage($request,'error',"Zadaný kód sa nezhoduje s kódom pracoviska");
+        }
+        return redirect()->route('web.pracovnik', app()->getLocale());
+    }
+
     protected function _setFlashMessage(Request $request, $type, $message){
         $request->session()->flash('type', $type);
         $request->session()->flash('message', $message);
@@ -117,19 +133,4 @@ class PracovnikController extends Controller
         return view('frontend.pracovnik.workplaces.request', compact('language', 'workplace'));
     }
 
-    public function pracovnikWorkplacesRequestStore(Request $request, $id) {
-        $workplace = Workplace::findOrFail($id);
-        $user = Auth::user();
-        $rcode = $request->input("kod");
-        $wcode = $workplace->code;
-
-        if ($rcode == $wcode) {
-            $user->{"workplace_id"} = $workplace->id;
-            $user->save();
-            $this->_setFlashMessage($request,'success',"Priradenie na pracovisko prebehlo úspešne");
-        } else {
-            $this->_setFlashMessage($request,'error',"Zadaný kód sa nezhoduje s kódom pracoviska");
-        }
-        return redirect()->route('pracovnik.workplaces', ['language' => app()->getLocale()]);
-    }
 }

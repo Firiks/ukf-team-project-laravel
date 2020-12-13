@@ -3,6 +3,7 @@
 @section('content')
     <section class="bg-light-gray">
         <div class="container">
+            @include('admin._partials._alert')
             <div class="text-center section-heading">
                 <h1>Študentské rozhranie</h1>
             </div>

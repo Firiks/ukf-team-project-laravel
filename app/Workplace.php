@@ -32,4 +32,5 @@ class Workplace extends BaseModel
     public function getSlugAttribute(){
         return $this->_translateProperty('slug');
     }
+
 }

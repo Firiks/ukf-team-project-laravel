@@ -30,7 +30,7 @@
 
                             @include('admin._partials._alert')
 
-                            <form action="{{ route('pracovnik.workplaces.request.store', $workplace->id) }}" method="post" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('pracovnik.workplaces.request.store', app()->getLocale()) }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-6 col-md-6">
@@ -38,6 +38,9 @@
                                             <label>Zadajte 6-miestny kód pracoviska</label>
                                             <input name="kod" type="number" placeholder="******" class="form-control {{ $errors->has("kod") ? 'parsley-error' : '' }}">
                                             @include('admin._partials._errors', ['column' => "kod"])
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="workplace_id" type="number" value="{{ $workplace->id }}" class="form-control" hidden>
                                         </div>
                                     </div>
                                 </div>

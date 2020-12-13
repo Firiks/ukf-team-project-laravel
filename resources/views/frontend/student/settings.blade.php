@@ -55,6 +55,12 @@
                 </div>
             </div>
 
+            <div class="row margin-10px-left">
+                <button type="submit" class="butn medium">
+                    <span>Uložiť</span>
+                </button>
+            </div>
+
         </div>
         </form>
         </div>
