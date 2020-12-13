@@ -13,7 +13,15 @@
             </div>
     <div class="row mb-3">
     <div class="col-sm-12 col-md-9">
+        @if(session()->has('error'))
+            <div class="error-message">{{ session()->get('message') }}</div>
+        @endif
+        @if(session()->has('success'))
+            <div class="success-message">{{ session()->get('message') }}</div>
+        @endif
 
+        <form method="post" action="{{route('pracovnik.update', app()->getLocale())}}" enctype="multipart/form-data">
+            @csrf
         <div class="tab-content mb-4">
 
             <div class="row flex-row">
@@ -47,7 +55,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label>Heslo</label>
-                        <input name="password" type="text" value="{{ old("password", isset($user) ? $user->{"password"} : '') }}" class="form-control {{ $errors->has("password") ? 'parsley-error' : '' }}">
+                        <input name="password" type="text" value="{{ old("password") }}" class="form-control {{ $errors->has("password") ? 'parsley-error' : '' }}">
                         @include('admin._partials._errors', ['column' => "password"])
                     </div>
                 </div>
@@ -73,7 +81,7 @@
 
 
         </div>
-
+        </form>
     </div>
 
 </div>

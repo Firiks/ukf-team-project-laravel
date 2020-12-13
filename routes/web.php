@@ -107,6 +107,8 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
         Route::get('/pracoviska/request/{id}', ['as' => 'student.workplaces.request', 'uses' => 'StudentController@studentWorkplacesRequest']);
         Route::post('/pracoviska', ['as' => 'student.workplaces.request.store', 'uses' => 'StudentController@studentWorkplacesRequestStore']);
+        Route::get('/profil', ['as' => 'student.profile', 'uses' => 'StudentController@settings']);
+        Route::post('/update', ['as' => 'student.update', 'uses' => 'StudentController@update']);
     });
 
     // Pracovnik
@@ -118,5 +120,7 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/pracoviska", ['as' => "pracovnik.workplaces", 'uses' => 'PracovnikController@pracovnikWorkplaces']);
         Route::get('/pracoviska/request/{id}', ['as' => 'pracovnik.workplaces.request', 'uses' => 'PracovnikController@pracovnikWorkplacesRequest']);
         Route::post('/pracoviska', ['as' => 'pracovnik.workplaces.request.store', 'uses' => 'PracovnikController@pracovnikWorkplacesRequestStore']);
+        Route::get('/profil', ['as' => 'pracovnik.profile', 'uses' => 'PracovnikController@settings']);
+        Route::post('/update', ['as' => 'pracovnik.update', 'uses' => 'PracovnikController@update']);
     });
 });

@@ -7,10 +7,14 @@ use App\EventCategory;
 use App\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Mail\CodeMail;
 use App\Room;
+use App\User;
 use App\Workplace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
@@ -25,8 +29,32 @@ class PracovnikController extends Controller
         return view('frontend.pracovnik.index',  compact('events'));
     }
 
-    public function settings(){
-        return view('frontend.pracovnik.settings');
+    public function settings($language){
+        $user = Auth::user();
+        return view('frontend.pracovnik.settings', compact('user', 'language'));
+    }
+
+    public function update(UpdateUserRequest $request){
+        $user = User::findOrFail($request->user()->id);
+
+        if(strcmp($request->password_confirmation, $request->password)){
+            $user->update([
+                'username' => $request->username,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            $user->save();
+
+            $this->upload_image($request, 'image', 'users', $user);
+
+            $this->_setFlashMessage($request, 'success', "Profil bol úspešne zmenený.");
+        } else {
+            $this->_setFlashMessage($request, 'error', "Heslá sa nezhodujú.");
+        }
+
+        return redirect()->route('pracovnik.profile', ['language' => app()->getLocale() , 'user' => $user]);
     }
 
     protected function _setFlashMessage(Request $request, $type, $message){

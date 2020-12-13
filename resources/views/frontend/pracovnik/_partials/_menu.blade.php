@@ -21,6 +21,12 @@
                                 </a>
                             </li>
 
+                            <li class="{{ request()->route()->getName() == 'pracovnik.profile' ? 'current' : '' }}">
+                                <a href="{{route('pracovnik.profile', app()->getLocale())}}" class="nav-item nav-link">
+                                    Profil
+                                </a>
+                            </li>
+
                         </ul>
 
                     </nav>
