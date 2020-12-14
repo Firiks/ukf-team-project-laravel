@@ -5,6 +5,7 @@
         <th>Názov SK</th>
         <th>Kategória</th>
         <th>Dátum</th>
+        <th>Akcie</th>
     </tr>
     </thead>
 
@@ -20,6 +21,25 @@
                 @endif
             @endforeach
             <td>{{ $event->date }}</td>
+            <td>
+                <div class="btn-group text-right" role="group">
+                    <button id="row-actions-{{ $event->id }}" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Možnosti
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="row-actions-{{ $event->id }}">
+                        <a class="dropdown-item" href="{{ route('events.edit', $event->id) }}">
+                            Editovať
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{ route('events.delete', $event->id) }}" method="post" style="display: inline-block; width: 100%;">
+                            @csrf
+                            <button data-entity="{{ 'Udalosť - ' . $event->name_sk }}" class="delete-button dropdown-item pointer" type="button">
+                                Vymazať
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </td>
         </tr>
     @endforeach
     </tbody>

@@ -105,6 +105,9 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/udalosti", ['as' => "student.events", 'uses' => 'StudentController@studentEvents']);
         Route::get("/udalosti/create", ['as' => "student.events.create", 'uses' => 'StudentController@studentEventCreate']);
         Route::post('/udalosti', ['as' => 'student.events.store', 'uses' => 'StudentController@studentEventStore']);
+        Route::get('/udalosti/edit/{id}', ['as' => 'student.event.edit', 'uses' => 'StudentController@studentEventEdit']);
+        Route::post('/udalosti/update/{id}', ['as' => 'student.event.update', 'uses' => 'StudentController@studentEventUpdate']);
+        Route::post('/udalosti/delete/{id}', ['as' => 'student.event.delete', 'uses' => 'StudentController@studentEventDelete']);
         Route::get("/pracoviska", ['as' => "student.workplaces", 'uses' => 'StudentController@studentWorkplaces']);
         Route::get('/pracoviska/request/{id}', ['as' => 'student.workplaces.request', 'uses' => 'StudentController@studentWorkplacesRequest']);
         Route::post('/pracoviska/store', ['as' => 'student.workplaces.request.store', 'uses' => 'StudentController@workplace_store']);
@@ -118,6 +121,9 @@ Route::group(['prefix' => '{language}'], function () {
         Route::get("/udalosti", ['as' => "pracovnik.events", 'uses' => 'PracovnikController@pracovnikEvents']);
         Route::get("/udalosti/create", ['as' => "pracovnik.events.create", 'uses' => 'PracovnikController@pracovnikEventCreate']);
         Route::post('/udalosti', ['as' => 'pracovnik.events.store', 'uses' => 'PracovnikController@pracovnikEventStore']);
+        Route::get('/udalosti/edit/{id}', ['as' => 'pracovnik.event.edit', 'uses' => 'PracovnikController@pracovnikEventEdit']);
+        Route::post('/udalosti/update/{id}', ['as' => 'pracovnik.event.update', 'uses' => 'PracovnikController@pracovnikEventUpdate']);
+        Route::post('/udalosti/update/{id}', ['as' => 'pracovnik.event.delete', 'uses' => 'PracovnikController@pracovnikEventDelete']);
         Route::get("/pracoviska", ['as' => "pracovnik.workplaces", 'uses' => 'PracovnikController@pracovnikWorkplaces']);
         Route::get('/pracoviska/request/{id}', ['as' => 'pracovnik.workplaces.request', 'uses' => 'PracovnikController@pracovnikWorkplacesRequest']);
         Route::post('/pracoviska/store', ['as' => 'pracovnik.workplaces.request.store', 'uses' => 'PracovnikController@workplace_store']);

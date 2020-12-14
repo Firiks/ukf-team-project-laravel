@@ -67,11 +67,16 @@ class StudentController extends Controller
         $request->session()->flash('message', $message);
     }
 
-    public function studentEvents(){
-        $events = Event::orderBy('created_at', 'desc')->get();
+    public function studentEvents(Request $request){
+        $user = Auth::user();
+        $events = Event::where('user_id', $user->{"id"})->orderBy('created_at', 'desc')->get();
         $categories = EventCategory::all();
-
-        return view('frontend.student.events.index', compact('events','categories'));
+        if ($user->{"workplace_id"} == NULL) {
+            $this->_setFlashMessage($request, 'success', "Na vytvorenie udalosti mustíte byť priradený na pracovisku");
+            return redirect()->route('web.student', app()->getLocale());
+        } else {
+            return view('frontend.student.events.index', compact('events','categories'));
+        }
     }
 
     public function studentEventCreate(){
@@ -123,10 +128,16 @@ class StudentController extends Controller
         return redirect()->route('student.events', ['language' => app()->getLocale()]);
     }
 
-    public function studentWorkplaces(){
+    public function studentWorkplaces(Request $request){
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
-
-        return view('frontend.student.workplaces.index', compact('workplaces'));
+        $user = Auth::user();
+        if ($user->{"workplace_id"} != NULL) {
+            $user_workplace = Workplace::findOrFail($user->{"workplace_id"});
+            $this->_setFlashMessage($request, 'success', "Vaše pracovisko je <b>$user_workplace->name</b>");
+            return redirect()->route('web.student', app()->getLocale());
+        } else {
+            return view('frontend.student.workplaces.index', compact('workplaces'));
+        }
     }
 
     public function studentWorkplacesRequest($language, $id) {

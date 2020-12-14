@@ -66,11 +66,16 @@ class PracovnikController extends Controller
         $request->session()->flash('message', $message);
     }
 
-    public function pracovnikEvents(){
+    public function pracovnikEvents(Request $request){
+        $user = Auth::user();
         $events = Event::orderBy('created_at', 'desc')->get();
         $categories = EventCategory::all();
-
-        return view('frontend.pracovnik.events.index', compact('events','categories'));
+        if ($user->{"workplace_id"} == NULL) {
+            $this->_setFlashMessage($request, 'success', "Na vytvorenie udalosti mustíte byť priradený na pracovisku");
+            return redirect()->route('web.pracovnik', app()->getLocale());
+        } else {
+            return view('frontend.pracovnik.events.index', compact('events','categories'));
+        }
     }
 
     public function pracovnikEventCreate(){
@@ -121,10 +126,16 @@ class PracovnikController extends Controller
         return redirect()->route('pracovnik.events', ['language' => app()->getLocale()]);
     }
 
-    public function pracovnikWorkplaces(){
+    public function pracovnikWorkplaces(Request $request){
         $workplaces = Workplace::orderBy('created_at', 'desc')->get();
-
-        return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
+        $user = Auth::user();
+        if ($user->{"workplace_id"} != NULL) {
+            $user_workplace = Workplace::findOrFail($user->{"workplace_id"});
+            $this->_setFlashMessage($request, 'success', "Vaše pracovisko je <b>$user_workplace->name</b>");
+            return redirect()->route('web.pracovnik', app()->getLocale());
+        } else {
+            return view('frontend.pracovnik.workplaces.index', compact('workplaces'));
+        }
     }
 
     public function pracovnikWorkplacesRequest($language, $id) {
