@@ -60,22 +60,33 @@
                     @include('admin._partials._errors', ['column' => 'faculty_id'])
                 </div>
             </div>
-
             <div class="col-sm-4">
                 <div class="form-group">
                     <label>Pracovisko</label>
-                    <select name="workplace_id" class="form-control">
-                        <option value="">Vyberte pracovisko</option>
+
+                    @if (Auth::user()->admin == 0)
                         @foreach($workplaces as $workplace)
-                            <option value="{{ $workplace->id }}" {{ old('workplace_id') == $workplace->id ? 'selected' : (isset($event) && $event->workplace_id == $workplace->id ? 'selected' : '') }}>
-                                {{ $workplace->name_sk }}
-                            </option>
+                            @if ($workplace->id == Auth::user()->workplace_id)
+                                <input type="hidden" name="workplace_id" value="{{ $workplace->id }}">
+                                <input type="text" class="form-control" placeholder="{{ $workplace->name_sk }}" readonly>
+                            @endif
                         @endforeach
-                    </select>
+                    @else
+                        <select name="workplace_id" class="form-control">
+                            <option value="">Vyberte pracovisko</option>
+                            @foreach($workplaces as $workplace)
+                                <option value="{{ $workplace->id }}" {{ old('workplace_id') == $workplace->id ? 'selected' : (isset($event) && $event->workplace_id == $workplace->id ? 'selected' : '') }}>
+                                    {{ $workplace->name_sk }}
+                                </option>
+                            @endforeach
+                        </select>
+                    @endif
+
                     @include('admin._partials._errors', ['column' => 'workplace_id'])
                 </div>
             </div>
         </div>
+
 
         <div class="row">
             <div class="col-sm-6">
