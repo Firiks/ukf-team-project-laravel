@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +18,15 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+                if (Auth::user()->admin == 1) {
+                    return redirect('/admin');
+                } elseif (Auth::user()->student == 1) {
+                    return redirect(route('web.student', 'sk'));
+                } elseif (Auth::user()->pracovnik == 1) {
+                    return redirect(route('web.pracovnik', 'sk'));
+                } else {
+                    return '/sk';
+                }
         }
 
         return $next($request);
